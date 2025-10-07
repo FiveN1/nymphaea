@@ -1,0 +1,1 @@
+This file contains pre-built library files. (.lib)
