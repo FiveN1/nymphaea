@@ -1,1 +1,1 @@
-This file contains pre-built library files. (.lib)
+This folder contains pre-built library files. (.lib)
