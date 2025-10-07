@@ -1,4 +1,6 @@
 # Nymphaea
+(repo under construction!)
+
 A C Library for creating C applications.
 
 ## How to use?
