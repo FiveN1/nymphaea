@@ -1,16 +1,16 @@
 # Nymphaea
-*(repo under construction!)*
 
 Nymphaea is C a library designed for creating programmable art.
-Nymphaea shoud be powerful yet easy to understand.
+Nymphaea is powerful yet easy to understand.
 
 Use this library as you like!
 
 ## 🌸About
-- Nymphaea makes it easy to write c programs with no limits. 
+- Nymphaea makes it easy to write C programs, that dont limit you. 
 - Nymphaea is data oriented.
 - Nymphaea also does not use any global variables (almost) so you can easily understand the flow of your programs data.
-- Nymphaea thies to be as simple and abstract as possible.
+- Nymphaea is simple yet powerful.
+- Most of the comments are in Czech since im from Czechia (sorry!)
 
 ## 🌸Hello World Example:
 This simple example will create a window with the text `Hello World!` in the middle.
@@ -131,5 +131,6 @@ then you shoud find the compiled library in `bin/*configuration-system-architect
 type `include` (still in `build.bat`) to create the `include/` directory that you will need to include in your project.
 
 ## 🌸More?
-This library will be in developement for a long time since i will use it in my future projects.
+This library will be in developement for a long time, since i will use it in my future projects.
+Contact me if you have any suggestions for this library!
 
