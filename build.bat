@@ -36,10 +36,10 @@ GOTO Done
 echo.
 echo Enter 'build.bat action' where action is one of the following:
 echo.
-echo   compile_d/compile Compiles the %library_name% library in a Debug confoguration using vs2022 solution.
-echo   compile_r         Compiles the %library_name% library in a Release confoguration using vs2022 solution.
+echo   compile_d/compile Compiles the %library_name% library in a Debug confoguration using vs2022 project files.
+echo   compile_r         Compiles the %library_name% library in a Release confoguration using vs2022 project files.
 echo   include           Creates an include directory for use in your projects.
-echo   clean             Removes binaries, includes and solution files.
+echo   clean             Removes binaries, includes and project files.
 echo   exit              Exit from this program.
 echo.
 echo Premake commands:
