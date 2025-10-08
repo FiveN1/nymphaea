@@ -112,7 +112,8 @@ int main() {
 }
 
 ```
-<img src="https://github.com/FiveN1/nymphaea/blob/main/res/hello_world_example.png" alt="Hello World example result" width="200"/>
+#### Result:
+<img src="https://github.com/FiveN1/nymphaea/blob/main/res/hello_world_example.png" alt="Hello World example result" width="512"/>
 
 You can see the application/program is split into 3 stages.
 - **Create.** In this stage sets the data of the program.
