@@ -1,15 +1,15 @@
-# Nymphaea
+# 🌸Nymphaea
 *(repo under construction!)*
 
 A C Library for creating C applications.
 Data oriented, low level, flexible library.
 
-## About
+## 🌸About
 - Nymphaea is data oriented.
 - Nymphaea also does not use any global variables (almost) so you can easily understand the flow of your programs data.
 - Nymphaea thies to be as simple and abstract as possible. so you can youe its functions in many cases.
 
-## Hello World Example:
+## 🌸Hello World Example:
 This simple example will create a window with the text `Hello World!` in the middle.
 You can find this demo in `demos/HelloWorld_demo`.
 
@@ -106,7 +106,7 @@ You can see the application/program is split into 3 stages.
 
 This approach is very abstract and you can see the similarities of the touring machine emerging. Where the program data is the tape, that is iterated upon in the run function.
 
-## How to use?
+## 🌸How to use?
 to use this library in your project you have two options: pre-compile the whole library or use it as is.
 
 #### Use as linked library:
