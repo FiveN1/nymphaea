@@ -113,6 +113,8 @@ int main() {
 
 ```
 
+![Hello World example result](https://github.com/FiveN1/nymphaea/blob/main/res/hello_world_example.png)
+
 You can see the application/program is split into 3 stages.
 - **Create.** In this stage sets the data of the program.
 - **Run.** In here the data is iterated upon.
