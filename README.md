@@ -6,6 +6,8 @@ Nymphaea is powerful yet easy to understand.
 
 Use this library as you like!
 
+<img style="float: right;" src="https://github.com/FiveN1/nymphaea/blob/main/res/lion_demo_screenshot1.png" alt="Nymphaea 3D screenshot" width="512"/>
+
 ## 🌸About
 - Nymphaea makes it easy to write C programs.
 - Nymphaea is data oriented.
