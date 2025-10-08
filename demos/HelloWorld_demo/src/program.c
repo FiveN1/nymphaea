@@ -9,7 +9,7 @@ void program_create(program_data* program) {
     np_renderer_create();
 
     // create window
-    np_window_create(&program->window, program, 800, 800, "Hello world example!");
+    np_window_create(&program->window, program, 800, 800, "Hello world!");
     np_window_bind_event_callback(&program->window, &program_on_event); // also bind the window callback so we can close the window!
 
     // create GUI

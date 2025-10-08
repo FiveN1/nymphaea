@@ -1,0 +1,245 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{5830AB68-44FD-0574-6D16-F41B59423B02}</ProjectGuid>
+    <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>nymphaea</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v143</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>demos\HelloWorld_demo\bin\Debug-windows-x86_64\nymphaea\</OutDir>
+    <IntDir>demos\HelloWorld_demo\bin-int\Debug-windows-x86_64\nymphaea\</IntDir>
+    <TargetName>nymphaea</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>demos\HelloWorld_demo\bin\Release-windows-x86_64\nymphaea\</OutDir>
+    <IntDir>demos\HelloWorld_demo\bin-int\Release-windows-x86_64\nymphaea\</IntDir>
+    <TargetName>nymphaea</TargetName>
+    <TargetExt>.lib</TargetExt>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;NP_OPENGL_VERSION=4.6;NP_PLATFORM_WINDOWS;NP_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
+      <Optimization>Disabled</Optimization>
+      <MinimalRebuild>false</MinimalRebuild>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>GLFW.lib;Glad.lib;freetype.lib;cglm.lib;zlibstaticd.lib;assimp-vc143-mtd.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <PrecompiledHeaderFile>pch.h</PrecompiledHeaderFile>
+      <WarningLevel>Level3</WarningLevel>
+      <PreprocessorDefinitions>GLFW_INCLUDE_NONE;NP_OPENGL_VERSION=4.6;NP_PLATFORM_WINDOWS;NP_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>src;dependencies\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <Optimization>Full</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <MinimalRebuild>false</MinimalRebuild>
+      <StringPooling>true</StringPooling>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+    <Lib>
+      <AdditionalDependencies>GLFW.lib;Glad.lib;freetype.lib;cglm.lib;zlibstaticd.lib;assimp-vc143-mtd.lib;opengl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>dependencies\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+    </Lib>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClInclude Include="src\nymphaea_lib\core\data_structures\array\array.h" />
+    <ClInclude Include="src\nymphaea_lib\core\data_structures\dynamic_array\dynamic_array.h" />
+    <ClInclude Include="src\nymphaea_lib\core\data_structures\dynamic_frag_array\dynamic_frag_array.h" />
+    <ClInclude Include="src\nymphaea_lib\core\data_structures\hash_table\hash_table.h" />
+    <ClInclude Include="src\nymphaea_lib\core\data_structures\id_array\id_array.h" />
+    <ClInclude Include="src\nymphaea_lib\core\debug\assert\assert.h" />
+    <ClInclude Include="src\nymphaea_lib\core\debug\debug.h" />
+    <ClInclude Include="src\nymphaea_lib\core\debug\log\log.h" />
+    <ClInclude Include="src\nymphaea_lib\core\debug\memory_debug\mem_debug.h" />
+    <ClInclude Include="src\nymphaea_lib\core\debug\time\time.h" />
+    <ClInclude Include="src\nymphaea_lib\core\event\event.h" />
+    <ClInclude Include="src\nymphaea_lib\core\file\file\file.h" />
+    <ClInclude Include="src\nymphaea_lib\core\file\image\image.h" />
+    <ClInclude Include="src\nymphaea_lib\core\functions\functions.h" />
+    <ClInclude Include="src\nymphaea_lib\core\functions\string_format\string_format.h" />
+    <ClInclude Include="src\nymphaea_lib\core\mia\mia.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\camera\camera_2d\camera_2d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\camera\camera_3d\camera_3d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\camera\camera_3d\freecam\freecam.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\debug\delta_time.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\font\font.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\font\glyph.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\framebuffer\framebuffer.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\graphics.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\gui\context\context.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\gui\context\shader\shader.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\gui\gui.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\gui\text\text.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\mesh\mesh.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\mesh\mesh_data\mesh_data.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\mesh\mesh_data\procedural\mesh_procedural.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\mesh\mesh_mia_system\mesh_mia_system.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\dsa_texture_2d\dsa_texture_2d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\ebo\ebo.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\fbo\fbo.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\rbo\rbo.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\ssbo\ssbo.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\texture_2d\texture_2d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\vao\vao.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\objects\vbo\vbo.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\program\compute_program\compute_program.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\program\shader_program\shader.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\program\shader_program\shader_data.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\program\shader_program\shader_input.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\program\shader_program\shader_maker\shader_maker.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\program\shader_program\shader_program.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\rect\rect.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\renderer\renderer.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\scene\model\model.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\scene\model\model_material.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\scene\point_light\point_light.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\scene\scene.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\text\text.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\text\text_2d\text_2d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\text\text_3d\text_3d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\text\text_highlight\text_highlight.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\transform\transform_2d\transform_2d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\transform\transform_3d\transform_3d.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\window\input\input.h" />
+    <ClInclude Include="src\nymphaea_lib\graphics\window\window.h" />
+    <ClInclude Include="src\nymphaea_lib\os\console\console.h" />
+    <ClInclude Include="src\nymphaea_lib\os\console\console_defines.h" />
+    <ClInclude Include="src\nymphaea_lib\os\os.h" />
+    <ClInclude Include="src\pch.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\nymphaea_lib\core\data_structures\array\array.c" />
+    <ClCompile Include="src\nymphaea_lib\core\data_structures\dynamic_array\dynamic_array.c" />
+    <ClCompile Include="src\nymphaea_lib\core\data_structures\dynamic_frag_array\dynamic_frag_array.c" />
+    <ClCompile Include="src\nymphaea_lib\core\data_structures\hash_table\hash_table.c" />
+    <ClCompile Include="src\nymphaea_lib\core\data_structures\id_array\id_array.c" />
+    <ClCompile Include="src\nymphaea_lib\core\debug\assert\assert.c" />
+    <ClCompile Include="src\nymphaea_lib\core\debug\log\log.c" />
+    <ClCompile Include="src\nymphaea_lib\core\debug\memory_debug\mem_debug.c" />
+    <ClCompile Include="src\nymphaea_lib\core\debug\time\time.c" />
+    <ClCompile Include="src\nymphaea_lib\core\file\file\file.c" />
+    <ClCompile Include="src\nymphaea_lib\core\file\image\image.c" />
+    <ClCompile Include="src\nymphaea_lib\core\functions\string_format\string_format.c" />
+    <ClCompile Include="src\nymphaea_lib\core\mia\mia.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\camera\camera_2d\camera_2d.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\camera\camera_3d\camera_3d.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\camera\camera_3d\freecam\freecam.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\debug\delta_time.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\font\font.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\framebuffer\framebuffer.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\gui\context\context.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\gui\context\shader\shader.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\gui\text\text.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\mesh\mesh.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\mesh\mesh_data\mesh_data.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\mesh\mesh_data\procedural\mesh_procedural.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\mesh\mesh_mia_system\mesh_mia_system.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\dsa_texture_2d\dsa_texture_2d.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\ebo\ebo.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\fbo\fbo.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\rbo\rbo.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\ssbo\ssbo.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\texture_2d\texture_2d.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\vao\vao.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\objects\vbo\vbo.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\program\compute_program\compute_program.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\program\shader_program\shader.c">
+      <ObjectFileName>$(IntDir)\shader1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\nymphaea_lib\graphics\program\shader_program\shader_data.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\program\shader_program\shader_input.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\program\shader_program\shader_maker\shader_maker.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\program\shader_program\shader_program.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\rect\rect.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\renderer\renderer.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\scene\model\model.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\scene\model\model_material.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\scene\point_light\point_light.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\scene\scene.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\text\text.c">
+      <ObjectFileName>$(IntDir)\text1.obj</ObjectFileName>
+    </ClCompile>
+    <ClCompile Include="src\nymphaea_lib\graphics\text\text_2d\text_2d.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\text\text_highlight\text_highlight.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\transform\transform_2d\transform_2d.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\transform\transform_3d\transform_3d.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\window\input\input.c" />
+    <ClCompile Include="src\nymphaea_lib\graphics\window\window.c" />
+    <ClCompile Include="src\nymphaea_lib\os\console\console.c" />
+    <ClCompile Include="src\nymphaea_lib\platform\windows\win_main.c" />
+    <ClCompile Include="src\pch.c">
+      <PrecompiledHeader>Create</PrecompiledHeader>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="dependencies\build\GLFW\GLFW.vcxproj">
+      <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
+    </ProjectReference>
+    <ProjectReference Include="dependencies\build\Glad\Glad.vcxproj">
+      <Project>{BDD6857C-A90D-870D-52FA-6C103E10030F}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
