@@ -9,7 +9,7 @@ Data oriented, low level, flexible library.
 - Nymphaea also does not use any global variables (almost) so you can easily understand the flow of your programs data.
 - Nymphaea thies to be as simple and abstract as possible. so you can youe its functions in many cases.
 
-## Example:
+## Hello World Example:
 This simple example will create a window with the text `Hello World!` in the middle.
 You can find this demo in `demos/HelloWorld_damo`.
 
