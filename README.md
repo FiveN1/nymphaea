@@ -1,13 +1,16 @@
-# 🌸Nymphaea
+# Nymphaea
 *(repo under construction!)*
 
-A C Library for creating C applications.
-Data oriented, low level, flexible library.
+Nymphaea is C a library designed for creating programmable art.
+Nymphaea shoud be powerful yet easy to understand.
+
+Use this library as you like!
 
 ## 🌸About
+- Nymphaea makes it easy to write c programs with no limits. 
 - Nymphaea is data oriented.
 - Nymphaea also does not use any global variables (almost) so you can easily understand the flow of your programs data.
-- Nymphaea thies to be as simple and abstract as possible. so you can youe its functions in many cases.
+- Nymphaea thies to be as simple and abstract as possible.
 
 ## 🌸Hello World Example:
 This simple example will create a window with the text `Hello World!` in the middle.
@@ -114,12 +117,19 @@ to use this library in your project you have two options: pre-compile the whole 
 > This requieres you to use premake in your project.
 
 Simply include the `nymphaea.lua` in your premake5.lua file and link it by adding `"nymphaea"` to your `links {}`.
-To use the headers of this library you will need to run `build.bat` and type `gen_include` to create the `include/` directory that you will need to include in your project.
-You will also need to include the include files of this library dependencies (will automate this later).
+To use the header files of this library (and its dependencies) you will need to run `build.bat` and type `include` to create the `include/` directory that you will need to include in your project.
 
 ### Use as compiled library:
-run `build.bat` and type `compile`.
-- this will compile the library into `nymphaea.lib` file found in the newly generated `bin/` folder.
+run `build.bat` and type `compile_d` (or `compile_r` for release configuration).
 
-then type `gen_include` also in `build.bat`.
-- this will create an include directory that you can paste in your included files folder of your project.
+> [!NOTE]
+> theese commands use vs2022 project files for building!
+> use any of the premake commands (type `help` to get a list of them) to generate the project files you want to use for building this library.
+
+then you shoud find the compiled library in `bin/*configuration-system-architecture*/nymphaea.lib`.
+
+type `include` (still in `build.bat`) to create the `include/` directory that you will need to include in your project.
+
+## 🌸More?
+This library will be in developement for a long time since i will use it in my future projects.
+
