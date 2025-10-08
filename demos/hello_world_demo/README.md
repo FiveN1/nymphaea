@@ -8,5 +8,7 @@ This demo creates a window with the text "Hello World!" in the middle.
 Run `build.bat` and type `compile` or `c` to compile the program and run it.
 > [!NOTE]
 > This builds the project using VisualStudio 2022!
+
+> [!TIP]
 > Use any of the premake commands *(if you type `help` you will get a list of them)* to generate the project files for any editor/compiler you like!
 > Then you can build the project from the generated project files.
