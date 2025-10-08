@@ -2,6 +2,7 @@
 (repo under construction!)
 
 A C Library for creating C applications.
+Data oriented, low level, flexible library.
 
 ## How to use?
 to use this library in your project you have two options: pre-compile the whole library or use it as is.
@@ -21,7 +22,9 @@ then type 'gen_include' also in 'build.bat'.
 - this will create an include directory that you can paste in your included files folder of your project.
 
 ## Example:
-
+This simple example will create a window with the text `Hello World!` in the middle.
+You can see the application/program is split into 3 stages.
+- Initilize/Create. In this stage sets the data of the program.
 
 ```c
 #include<stdio.h>
@@ -30,6 +33,7 @@ then type 'gen_include' also in 'build.bat'.
 
 #include<nymphaea_lib/graphics/graphics.h>
 
+// data of this demo
 typedef struct program_data {
     bool is_running;
     np_window window;
