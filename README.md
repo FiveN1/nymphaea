@@ -120,5 +120,6 @@ You will also need to include the include files of this library dependencies (wi
 #### Use as compiled library:
 run `build.bat` and type `compile`.
 - this will compile the library into `nymphaea.lib` file found in the newly generated `bin/` folder.
-then type 'gen_include' also in 'build.bat'.
+
+then type `gen_include` also in `build.bat`.
 - this will create an include directory that you can paste in your included files folder of your project.
