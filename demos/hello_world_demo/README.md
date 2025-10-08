@@ -12,3 +12,6 @@ Run `build.bat` and type `compile` or `c` to compile the program and run it.
 > [!TIP]
 > Use any of the premake commands *(if you type `help` you will get a list of them)* to generate the project files for any editor/compiler you like!
 > Then you can build the project from the generated project files.
+
+## Download
+Download the executable [here!](https://github.com/FiveN1/nymphaea/releases/tag/hello_world_demo_v1.0)
