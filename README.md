@@ -4,6 +4,11 @@
 A C Library for creating C applications.
 Data oriented, low level, flexible library.
 
+## About
+Nymphaea is data oriented.
+Nymphaea also does not use any global variables (almost) so you can easily understand the flow of your programs data.
+Nymphaea thies to be as simple and abstract as possible. so you can youe its functions in many cases.
+
 ## How to use?
 to use this library in your project you have two options: pre-compile the whole library or use it as is.
 
@@ -109,10 +114,9 @@ int main() {
 ```
 
 You can see the application/program is split into 3 stages.
-- Create. In this stage sets the data of the program.
-- Run. In here the data is iterated upon.
-- Delete. here the data of the program is released and the program is discarded.
+- **Create.** In this stage sets the data of the program.
+- **Run.** In here the data is iterated upon.
+- **Delete.** here the data of the program is released and the program is discarded.
 
-This approach is very abstract and you can see the similarities to the touring machine. Where the program data is the tape, that is iterated upon in the run function.
-Also Nymphaea does not use any global variables (almost) so you can easily understand the flow of your programs data.
+This approach is very abstract and you can see the similarities of the touring machine emerging. Where the program data is the tape, that is iterated upon in the run function.
 
