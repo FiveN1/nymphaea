@@ -29,6 +29,8 @@ then type 'gen_include' also in 'build.bat'.
 ## Example:
 This simple example will create a window with the text `Hello World!` in the middle.
 
+<img src="https://github.com/FiveN1/nymphaea/blob/main/demos/HelloWorld_demo/res/hello_world_example_result.png" alt="Hello World example result" width="512"/>
+
 ```c
 #include<stdio.h>
 #include<stdlib.h>
@@ -112,8 +114,6 @@ int main() {
 }
 
 ```
-#### Result:
-<img src="https://github.com/FiveN1/nymphaea/blob/main/demos/HelloWorld_demo/res/hello_world_example_result.png" alt="Hello World example result" width="512"/>
 
 You can see the application/program is split into 3 stages.
 - **Create.** In this stage sets the data of the program.
