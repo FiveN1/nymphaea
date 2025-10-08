@@ -132,5 +132,6 @@ type `include` (still in `build.bat`) to create the `include/` directory that yo
 
 ## 🌸More?
 This library will be in developement for a long time, since i will use it in my future projects.
+
 Contact me if you have any suggestions for this library!
 
