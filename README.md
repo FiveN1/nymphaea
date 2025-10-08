@@ -112,6 +112,7 @@ You can see the application/program is split into 3 stages.
 - Create. In this stage sets the data of the program.
 - Run. In here the data is iterated upon.
 - Delete. here the data of the program is released and the program is discarded.
+
 This approach is very abstract and you can see the similarities to the touring machine. Where the program data is the tape, that is iterated upon in the run function.
 Also Nymphaea does not use any global variables (almost) so you can easily understand the flow of your programs data.
 
