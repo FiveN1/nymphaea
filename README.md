@@ -15,7 +15,7 @@ Use this library as you like!
 
 ## 🌸Hello World Example
 This simple example will create a window with the text `Hello World!` in the middle.
-You can find this demo in `demos/HelloWorld_demo`.
+You can find this demo in `demos/hello_world_demo`.
 
 <img src="https://github.com/FiveN1/nymphaea/blob/main/demos/hello_world_demo/res/hello_world_example_result.png" alt="Hello World example result" width="512"/>
 
