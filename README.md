@@ -1,12 +1,13 @@
 # Nymphaea
 
 Nymphaea is C a library designed for creating programmable art.
+
 Nymphaea is powerful yet easy to understand.
 
 Use this library as you like!
 
 ## 🌸About
-- Nymphaea makes it easy to write C programs, that dont limit you. 
+- Nymphaea makes it easy to write C programs.
 - Nymphaea is data oriented.
 - Nymphaea also does not use any global variables (almost) so you can easily understand the flow of your programs data.
 - Nymphaea is simple yet powerful.
@@ -107,10 +108,10 @@ You can see the application/program is split into 3 stages.
 - **Run.** In here the data is iterated upon.
 - **Delete.** here the data of the program is released and the program is discarded.
 
-This approach is very abstract and you can see the similarities of the touring machine emerging. Where the program data is the tape, that is iterated upon in the run function.
+This approach is very simple and you can see some similarities to the touring machine. Where the program data is the tape, that is set in the create function, and is iterated upon in the run function.
 
 ## 🌸How to use
-to use this library in your project you have two options: pre-compile the whole library or use it as is.
+You can just link this library to your project using premake or you can build it and include the compiled files.
 
 ### Use as linked library:
 > [!NOTE]
@@ -120,7 +121,7 @@ Simply include the `nymphaea.lua` in your premake5.lua file and link it by addin
 To use the header files of this library (and its dependencies) you will need to run `build.bat` and type `include` to create the `include/` directory that you will need to include in your project.
 
 ### Use as compiled library:
-run `build.bat` and type `compile_d` (or `compile_r` for release configuration).
+run `build.bat` and type `compile_d` (or `compile_r` for release configuration) to build this library.
 
 > [!NOTE]
 > theese commands use vs2022 project files for building!
