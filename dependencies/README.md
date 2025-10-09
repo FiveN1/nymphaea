@@ -1,17 +1,21 @@
+# Dependencies 
 This folder contains all of the dependencies of Nymphaea.
 
-The libraries are split into 2 types (pre-compiled & not pre-compiled)
+There are three folders:
+## Build
+This folder contains libraries that are compiled with nymphaea.
 
+Premake is used as allways.
+Each library has it's own premake5.lua file.
 
-PRE-COMPILED (include, lib)
+I would like to gradually move the pre-built libraries in here since it would be easier to build to diffrent platforms.
 
-The pre-compiled libraries sources are in the 'lib' folder, containing the .lib files.
-And the headers are in the 'include' folder.
+## Lib
+This folder contains the pre-built library files, usually compiled with CMake.
 
-NOT PRE-COMPILED (build)
+## Include
+This folder contains all of the library's headers.
 
-The not pre-compiled libraries are in the 'buld' folder.
-They are built by premake.
-each library has its own 'premake5.lua' file wich is used for the building of the library.
+This folder is added to the generated `include/` directory with the nymphaea heesders.
 
 
