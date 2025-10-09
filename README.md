@@ -1,10 +1,10 @@
 # Nymphaea
 
-Nymphaea is C a library designed for creating programmable art.
+Nymphaea is C a library made for creating programmable art.
 
-Nymphaea is powerful yet easy to understand.
+Nymphaea is powerful yet simple.
 
-Use this library as you like!
+Use Nymphaea as you like!
 
 <img style="float: right;" src="https://github.com/FiveN1/nymphaea/blob/main/res/lion_demo_screenshot1.png" alt="Nymphaea 3D screenshot" width="512"/>
 
@@ -136,5 +136,5 @@ type `include` (still in `build.bat`) to create the `include/` directory that yo
 ## 🌸More?
 This library will be in developement for a long time, since i will use it in my future projects.
 
-Contact me if you have any suggestions for this library!
+Contact me if you have any suggestions!
 
