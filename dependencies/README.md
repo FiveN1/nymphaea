@@ -1,7 +1,6 @@
 # Dependencies 
 This folder contains all of Nymphaea dependencies.
 
-There are three folders:
 ## 📁 Build
 This folder contains libraries that are compiled with nymphaea.
 
