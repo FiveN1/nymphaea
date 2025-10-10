@@ -2,8 +2,6 @@
 
 Nymphaea is C a library made for creating programmable art.
 
-Nymphaea is powerful yet simple.
-
 Use Nymphaea as you like!
 
 <img style="float: right;" src="https://github.com/FiveN1/nymphaea/blob/main/res/lion_demo_screenshot1.png" alt="Nymphaea 3D screenshot" width="512"/>
@@ -12,7 +10,7 @@ Use Nymphaea as you like!
 - Nymphaea makes it easy to write C programs.
 - Nymphaea is data oriented.
 - Nymphaea also does not use any global variables (almost) so you can easily understand the flow of your programs data.
-- Nymphaea is simple yet powerful.
+- Nymphaea is simple.
 - Most of the comments are in Czech since im from Czechia (sorry!)
 
 ## 🌸Hello World Example
