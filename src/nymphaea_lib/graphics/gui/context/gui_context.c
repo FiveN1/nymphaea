@@ -1,7 +1,13 @@
 #include"pch.h"
-#include"context.h"
+#include"gui_context.h"
 // elements supported by gui
 #include"nymphaea_lib/graphics/gui/text/text.h"
+
+
+#include"resources/gui_resources.h"
+
+// temp
+//#include"nymphaea_lib/core/file/file/file.h"
 
 void np_gui_create(np_gui_context* gui_context) {
     // the maximum amount of registries is set by the number of enums in 'np_gui_elements'
@@ -32,17 +38,23 @@ void np_gui_create(np_gui_context* gui_context) {
 
     // create mesh registry
     np_id_array_create(&gui_context->mesh_registry, 512, sizeof(np_mesh));
+
+    //
+    // GUI resources
+    //
     // load font
-    // "C:\\Programing\\_C\\Nymphaea\\assets\\font\\ProggyClean\\ProggyClean.ttf"
-    np_font_create(&gui_context->default_font, "C:\\Programing\\_C\\Nymphaea\\assets\\font\\arial\\arial.ttf");
+    np_gui_resources_set_font_proggy_clean(&gui_context->default_font);
+    // load shaders
+    np_gui_resources_set_text_shader(&gui_context->default_text_shader);
+    np_gui_resources_set_color_shader(&gui_context->default_color_shader);
 
-    gui_context->default_text_shader = np_shader_program_load("C:\\Programing\\_C\\Nymphaea\\nymphaea\\src\\graphics\\gui\\context\\shader\\text.vert", "", "C:\\Programing\\_C\\Nymphaea\\nymphaea\\src\\graphics\\gui\\context\\shader\\text.frag");
-    gui_context->default_color_shader = np_shader_program_load("C:\\Programing\\_C\\Nymphaea\\nymphaea\\src\\graphics\\gui\\context\\shader\\color.vert", "", "C:\\Programing\\_C\\Nymphaea\\nymphaea\\src\\graphics\\gui\\context\\shader\\color.frag");
-
+    // create view camera for gui
     np_camera_2d_create(&gui_context->camera);
 
-
+    
     glm_vec4_copy((vec4){0.9f, 0.7f, 0.0f, 1.0f}, gui_context->text_highlight_color);
+
+
 }
 
 void np_gui_delete(np_gui_context* gui_context) {

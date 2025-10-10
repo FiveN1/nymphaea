@@ -1,7 +1,7 @@
 
-workspace "HelloWorld_demo"
+workspace "hello_world_demo"
     architecture "x86_64"
-	startproject "HelloWorld_demo"
+	startproject "hello_world_demo"
 
     configurations {
         "Debug",
@@ -21,7 +21,7 @@ output_directory = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 
 nymphaea_directory = "../../"; -- coud be better.
 
-project "HelloWorld_demo"
+project "hello_world_demo"
 	kind "ConsoleApp"
 	language "C"
 	staticruntime "on"

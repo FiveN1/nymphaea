@@ -5,20 +5,55 @@
 // ostatní použivají: #include <unistd.h>
 #include <direct.h>
 
+
+long np_file_get_size(FILE* file) {
+    fseek(file, 0L, SEEK_END);
+    long file_size = ftell(file);
+    fseek(file, 0L, SEEK_SET);
+    return file_size;
+}
+
+unsigned char* np_file_load(const char* filename, long* file_data_size) {
+    FILE* file;
+    errno_t err;
+    if ((err = fopen_s(&file, filename, "r")) != 0) {
+        np_debug_print_red("np_file_load error: file \"%s\" not found!", filename);
+        fclose(file);
+        return NULL;
+    }
+    // get file length
+    *file_data_size = np_file_get_size(file);
+    np_debug_print("dgdsf: %llu", sizeof(unsigned char) * (size_t)(*file_data_size));
+
+    unsigned char* file_data = (unsigned char*)malloc(sizeof(unsigned char) * (size_t)(*file_data_size));
+    if (file_data == NULL) {
+        np_debug_print_red("np_file_load error: malloc error!");
+        fclose(file);
+        return NULL;
+    }
+
+    fread(file_data, sizeof(unsigned char), *file_data_size, file);
+
+    fclose(file);
+    
+    return file_data;
+}
+
 /*
 * NOTE:
 * the return value of malloc & fread is not checked!
 * this function is not well buit!
 */
-char* np_file_load(const char* filename) {
+char* np_file_load_string(const char* filename) {
     // get file handler and check if file exists
     FILE* file;
     errno_t err;
-    if ((err = fopen_s(&file, filename, "r")) != 0) return NULL;
+    if ((err = fopen_s(&file, filename, "r")) != 0) {
+        np_debug_print_red("np_file error: file \"%s\" not found!", filename);
+        return NULL;
+    }
     // get file length
-    fseek(file, 0L, SEEK_END);
-    long file_size = ftell(file);
-    fseek(file, 0L, SEEK_SET);
+    long file_size = np_file_get_size(file);
     // allocate memory for the file content
     // add 1 extra space for the terminator character
     char* file_content = (char*)malloc(sizeof(char) * (file_size + 1));
@@ -32,12 +67,7 @@ char* np_file_load(const char* filename) {
     return file_content;
 }
 
-void np_file_free(char* file_content) {
-    free(file_content);
-}
-
-
-char* np_file_load_w(const wchar_t* filename) {
+char* np_file_load_string_w(const wchar_t* filename) {
     // get file handler and check if file exists
     FILE* file;
     errno_t err;
@@ -58,6 +88,11 @@ char* np_file_load_w(const wchar_t* filename) {
     fclose(file);
     return file_content;
 }
+
+void np_file_free(char* file_data) {
+    free(file_data);
+}
+
 /*
 
 np_dynamic_array np_file_get_files_w(const wchar_t* directory, const wchar_t* filemask) {

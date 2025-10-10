@@ -4,7 +4,19 @@
 /*
 * TODO:
 * - add spacing between glyphs in the atlas texture
+*
+* - udělat čistější.
 */
+
+//
+// private define
+//
+
+void np_font_create_from_face(np_font* font, FT_Face face);
+
+//
+// implementation
+//
 
 void np_font_create(np_font* font, const char* font_filename) {
     // load the free-type library
@@ -13,6 +25,60 @@ void np_font_create(np_font* font, const char* font_filename) {
     // load font 
     FT_Face face;
     np_assert(!FT_New_Face(ft, font_filename, 0, &face), "np_font: failed to load font");
+    // set font from face
+    np_font_create_from_face(font, face);
+    // clear
+    FT_Done_Face(face);
+    FT_Done_FreeType(ft);
+}
+
+void np_font_create_memory(np_font* font, const FT_Byte* font_file_data, FT_Long font_file_data_size) {
+    // load the free-type library
+    FT_Library ft;
+    np_assert(!FT_Init_FreeType(&ft), "np_font: could not init FreeType library");
+    // load font face
+    FT_Face face;
+    np_assert(!FT_New_Memory_Face(ft, font_file_data, font_file_data_size, 0, &face), "np_font: failed to load font");
+    // set font from face
+    np_font_create_from_face(font, face);
+    // clear
+    FT_Done_Face(face);
+    FT_Done_FreeType(ft);
+}
+
+void np_font_delete(np_font* font) {
+    np_array_delete(&font->glyphs);
+    np_texture_2d_delete(&font->atlas);
+}
+
+np_texture_2d np_font_get_atlas(np_font* font) {
+    return font->atlas;
+}
+
+GLsizei np_font_get_atlas_width(np_font* font) {
+    return font->atlas_width;
+}
+
+GLsizei np_font_get_atlas_height(np_font* font) {
+    return font->atlas_height;
+}
+
+np_glyph np_font_get_glyph(np_font* font, char character) {
+    np_glyph* glyph = (np_glyph*)np_array_get(&font->glyphs, character);
+    // if glyph not valid return first glyph
+    if (glyph == NULL) glyph = (np_glyph*)np_array_get(&font->glyphs, 0);
+    return *glyph;
+}
+
+GLfloat np_font_get_row_offset(np_font* font) {
+    return (GLfloat)font->atlas_height * font->scale;
+}
+
+//
+// private implementation
+//
+
+void np_font_create_from_face(np_font* font, FT_Face face) {
     // font resolution
     FT_Set_Pixel_Sizes(face, 0, 48);
     // Disable byte-alignment restriction
@@ -77,38 +143,9 @@ void np_font_create(np_font* font, const char* font_filename) {
         // set the next glyph atlas offset
         glyph_atlas_offset += face->glyph->bitmap.width;
     }
-
-    FT_Done_Face(face);
-    FT_Done_FreeType(ft);
 }
 
-void np_font_delete(np_font* font) {
-    np_array_delete(&font->glyphs);
-    np_texture_2d_delete(&font->atlas);
-}
 
-np_texture_2d np_font_get_atlas(np_font* font) {
-    return font->atlas;
-}
-
-GLsizei np_font_get_atlas_width(np_font* font) {
-    return font->atlas_width;
-}
-
-GLsizei np_font_get_atlas_height(np_font* font) {
-    return font->atlas_height;
-}
-
-np_glyph np_font_get_glyph(np_font* font, char character) {
-    np_glyph* glyph = (np_glyph*)np_array_get(&font->glyphs, character);
-    // if glyph not valid return first glyph
-    if (glyph == NULL) glyph = (np_glyph*)np_array_get(&font->glyphs, 0);
-    return *glyph;
-}
-
-GLfloat np_font_get_row_offset(np_font* font) {
-    return (GLfloat)font->atlas_height * font->scale;
-}
-
+// Zdroje:
 // https://stackoverflow.com/questions/68855110/unable-to-upload-bitmaps-from-most-fonts-loaded-by-freetype-to-opengl-as-texture
 // ft unicode : https://stackoverflow.com/questions/60526004/how-to-get-glyph-unicode-using-freetype

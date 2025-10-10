@@ -90,6 +90,24 @@ void np_log_set_callback(np_log_callback callback);
 #endif
 
 //
+// NOT DEBUG
+//
+
+#define np_print(message, ...) np_logf(CONCOL_WHITE, message, __VA_ARGS__)
+
+#define np_print_green(message, ...) np_logf(CONCOL_GREEN, message, __VA_ARGS__)
+
+#define np_print_yellow(message, ...) np_logf(CONCOL_YELLOW, message, __VA_ARGS__)
+
+#define np_print_red(message, ...) np_logf(CONCOL_RED, message, __VA_ARGS__)
+
+#define np_print_blue(message, ...) np_logf(CONCOL_BLUE, message, __VA_ARGS__)
+
+#define np_print_aqua(message, ...) np_logf(CONCOL_AQUA, message, __VA_ARGS__)
+
+#define np_print_purple(message, ...) np_logf(CONCOL_PURPLE, message, __VA_ARGS__)
+
+//
 // Functions
 //
 
@@ -103,7 +121,7 @@ void np_logf(unsigned short variant, const char* message, ...);
 * - všechny debug funnkce budou začínat s np_debug_.
 * - také je z toho jasné že jde o print, protože log se v názvosloví nepoužívá.
 * - za np_debug_print je pak vložena barva v které bude vytisknut text.
-*
+* [09.10.2025] přidány klasické np_print() funkce, které zůstanou i v release.
 *
 *
 *

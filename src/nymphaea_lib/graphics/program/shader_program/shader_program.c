@@ -73,15 +73,15 @@ np_shader_program np_shader_program_create(const GLchar* vertex_shader_source, c
 np_shader_program np_shader_program_load(const char* vertex_shader_filename, const char* geometry_shader_filename, const char* fragment_shader_filename) {
     np_shader_program shader_program;
     // load the source code from a file
-    char* vertex_shader_source = np_file_load(vertex_shader_filename);
+    char* vertex_shader_source = np_file_load_string(vertex_shader_filename);
     np_assert(vertex_shader_source != NULL, "SHADER PROGRAM ERROR: vertex shader file not found\n -> path: [%s] does not exist", vertex_shader_filename);
     
     char* geometry_shader_source = "";
     if (strlen(geometry_shader_filename) != 0) {
-        geometry_shader_source = np_file_load(geometry_shader_filename);
+        geometry_shader_source = np_file_load_string(geometry_shader_filename);
         np_assert(vertex_shader_source != NULL, "SHADER PROGRAM ERROR: geometry shader file not found\n -> path: [%s] does not exist", geometry_shader_filename);
     }
-    char* fragment_shader_source = np_file_load(fragment_shader_filename);
+    char* fragment_shader_source = np_file_load_string(fragment_shader_filename);
     np_assert(fragment_shader_source != NULL, "SHADER PROGRAM ERROR: fragment shader file not found\n -> path: [%s] does not exist", fragment_shader_filename);
 
     // create the shader program

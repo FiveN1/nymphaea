@@ -10,7 +10,9 @@
 
 /*
 * ## Font
-* - a collection of glyph (character) data
+* 
+* a collection of glyph (character) data
+*
 */
 typedef struct np_font {
     // texture holding all glyph textures
@@ -29,7 +31,9 @@ typedef struct np_font {
 // load font instance.
 // - np_font* font             -> font instance.
 // - const char* font_filename -> file directory to load font from.
-void np_font_create(np_font* font, const char* font_filename);
+void np_font_create(np_font* font, const char* font_filename); // rename na np_font_load()?
+// create font instance form alread loaded data.
+void np_font_create_memory(np_font* font, const FT_Byte* font_file_data, FT_Long font_file_data_size);
 // delete font instance.
 // - np_font* font -> font instance.
 void np_font_delete(np_font* font);
@@ -51,5 +55,13 @@ np_glyph np_font_get_glyph(np_font* font, char character);
 GLfloat np_font_get_row_offset(np_font* font);
 
 // __NULL_IMPORT_DESCRIPTOR warn: https://www.gamedev.net/forums/topic/645255-building-a-library-with-another-library/
+
+/* Změny
+*
+* [...]
+* [09.10.2025] přidána možnost načítání fontu z předem načtených souborů (byte dat)
+* [10.10.2025] začištění
+*
+*/
 
 #endif NP_FONT_H

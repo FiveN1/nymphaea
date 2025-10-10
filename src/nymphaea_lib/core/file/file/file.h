@@ -9,18 +9,40 @@
 *
 * functions for manipulating files
 *
+* BORDEL!
 *
+* File struct?
+* - data
+* - velikost
+* - název?
 */
 
-// read file as string
-char* np_file_load(const char* filename);
-// free read file
-void np_file_free(char* file_content);
+// načte čistá data z souboru.
+// #### Parametry:
+// - const char* filename -> cesta k souboru.
+// - long* file_size -> velikost bufferu.
+// #### Return:
+// - unsigned char* -> pointer na buffer s daty souboru. (na heapu)
+unsigned char* np_file_load(const char* filename, long* file_data_size);
+// načte data souboru jako string.
+// #### Parametry:
+// - const char* filename -> cesta k souboru.
+// #### Return:
+// - char* -> pointer na string dat souboru. (na heapu)
+char* np_file_load_string(const char* filename);
+// načte data souboru jako w_string.
+// #### Parametry:
+// - const char* filename -> cesta k souboru.
+// #### Return:
+// - char* -> pointer na string dat souboru. (na heapu)
+char* np_file_load_string_w(const wchar_t* filename);
+// uvolní data souboru. free()
+// #### Parametry:
+// - unsigned char* file_data -> data načtená ze souboru.
+void np_file_free(char* file_data);
 
 //bool np_file_find(const char* filename);
 
-
-char* np_file_load_w(const wchar_t* filename);
 
 
 //np_dynamic_array np_file_get_files_w(const wchar_t* directory, const wchar_t* filemask);

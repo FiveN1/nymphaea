@@ -1,7 +1,7 @@
 #ifndef NP_GUI_TEXT_H
 #define NP_GUI_TEXT_H
 
-#include"nymphaea_lib/graphics/gui/context/context.h"
+#include"nymphaea_lib/graphics/gui/context/gui_context.h"
 
 #include"nymphaea_lib/graphics/text/text.h"
 #include"nymphaea_lib/graphics/transform/transform_2d/transform_2d.h"

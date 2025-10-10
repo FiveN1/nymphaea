@@ -36,10 +36,13 @@ GOTO Done
 echo.
 echo Enter 'setup_project.bat action' where action is one of the following:
 echo.
-echo   exit              Exit from this program
 echo   compile / c       Compile your program
 echo   run     / r       Run compiled program
 echo   clean             Remove all binaries and intermediate binaries and project files.
+echo   exit              Exit from this program
+echo.
+echo Premake commands:
+echo.
 echo   codelite          Generate CodeLite project files
 echo   gmake             Generate GNU makefiles for Linux
 echo   vs2005            Generate Visual Studio 2005 project files

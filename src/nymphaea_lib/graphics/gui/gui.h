@@ -8,7 +8,7 @@
 *
 */
 
-#include"context/context.h"
+#include"context/gui_context.h"
 
 #include"text/text.h"
 

@@ -14,7 +14,7 @@
 
 // ## GUI Context
 // holds all nymphaea GUI data.
-typedef struct np_gui_context {
+typedef struct np_gui_context { // rename na np_gui?
     // core
     np_mia elements;
     np_array registry_types;
@@ -70,5 +70,16 @@ void np_gui_on_event(np_gui_context* gui_context, np_event event, np_window* win
 
 // možná mít všechny elementy zapnuté?
 // ale potom si nemůžeš určovat počet elementů... a musel bys vymyslet nějakej id systém pro všechny shadery a elementy...
+
+/* Změny:
+*
+* [...]
+* [08.10.2025] přidán embeded shader source code. (ještě přidata embeded font!) 
+* nelepší bude vytvořit nějaký struct? nebo kde bych to mohl uložit?
+* [09.10.2025] přidán embeded font. embeded zdroje jsou v gui_resources ve formě funkcí.
+* ty data jsou v funkcícch, kde jsou allokována a potom uvolněna (ve funkci) takže nezaplnuje zbytečně pamět.
+*
+*
+*/
 
 #endif NP_GUI_CONTEXT_H
