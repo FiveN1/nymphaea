@@ -8,8 +8,13 @@
 #include<nymphaea_lib/graphics/program/shader_program/shader.h>
 #include<nymphaea_lib/graphics/program/shader_program/shader_maker/shader_maker.h>
 
-// pod /scene se nachází componenty které jsou závislé na scéně.
+//
+// !! UNDER DEVELOPEMENT !!
+//
 
+// #### Scene
+// v scene se nachází componenty které jsou závislé na scéně.
+//
 typedef struct np_scene {
     np_mia mia;
     np_mia_registry* mesh_registry;
@@ -27,6 +32,8 @@ typedef struct np_scene {
 } np_scene;
 
 void np_scene_create(np_scene* scene);
+
+void np_scene_delete(np_scene* scene);
 
 void np_scene_draw(np_scene* scene);
 
@@ -61,7 +68,7 @@ void np_scene_set_shader_data_lights(np_scene* scene, np_shader_data* shader_dat
 * [10.06.2025] vytvořeno - aby bylo možné podávat data o světě do materiálu pomocí nějakého kontejneru.
 * [13.06.2025] přidány nějaké zakladní funkce.
 * [14.06.2025] přemýšlím jak udělat flexibilní uniform send system...
-*
+* [11.10.2025] menší začištění.
 */
 
 

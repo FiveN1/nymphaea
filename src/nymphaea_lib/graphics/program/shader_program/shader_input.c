@@ -35,6 +35,10 @@ void np_shader_input_create(np_shader_input* shader_input, np_shader_program sha
         glGetActiveUniform(shader_program, i, NP_UNIFORM_MAX_NAME_LENGTH, &length, &size, &gl_type, name);
         add_uniform(shader_input, np_get_gl_uniform_type(gl_type), name);
     }
+    // debug
+    #ifdef NP_SHADER_INPUT_DEBUG
+    np_shader_input_print(shader_input);
+    #endif
 }
 
 void np_shader_input_delete(np_shader_input* shader_input) {

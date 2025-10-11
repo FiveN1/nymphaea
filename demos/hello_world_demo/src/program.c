@@ -24,7 +24,9 @@ void program_create(program_data* program) {
 void program_run(program_data* program) {
     // main loop
     while(program->is_running) {
-
+        // cleat window
+        np_window_clear_buffers();
+        
         // update (draw) GUI
         np_gui_update(&program->gui_context, &program->window);
 

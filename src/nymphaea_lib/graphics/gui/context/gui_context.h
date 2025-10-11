@@ -21,11 +21,13 @@ typedef struct np_gui_context { // rename na np_gui?
     //
     np_id_array mesh_registry;
     np_font default_font;
-    np_shader_program default_text_shader;
+    np_shader_program default_text_shader; // vyměnit za np_shader?
     np_shader_program default_color_shader;
     np_camera_2d camera;
 
     vec4 text_highlight_color;
+
+    //np_shader default_text_shader;
 
     // co bude gui obsahovat?
     // + camera_2d

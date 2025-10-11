@@ -5,7 +5,7 @@
 void np_freecam_create(np_freecam* freecam) {
     np_camera_3d_create(&freecam->camera);
 
-    freecam->speed = 0.05f;
+    freecam->speed = 0.01f;
     freecam->sprint_speed = 0.1f;
     freecam->speed_state = freecam->speed;
 

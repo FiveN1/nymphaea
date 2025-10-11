@@ -1,5 +1,7 @@
 #include"pch.h"
 #include"model.h"
+// embeded resources
+#include"resources/model_resources.h"
 
 //
 // local definice
@@ -64,11 +66,11 @@ np_model* np_model_create(np_scene* scene, const char* filename) {
     // materiály stejne jako meshe jsou uloženy v jednom velkém poli scény
     // NOTE: všiml jsem si že né každý materiál modelu je použit meshem
     for (GLuint i = 0; i < assimp_scene->mNumMaterials; i++) {
-        // generate shader tady!
-        // np_shader_maker
+        // TODO: vygenerovat shader? (pomocí np_shader_maker)
         np_shader* shader = (np_shader*)np_array_get(&model->shaders, i);
-        np_shader_create_file(shader, "res/shaders/model_shader1.vert", "res/shaders/model_shader1.geom", "res/shaders/model_shader1.frag");
-        np_shader_input_print(&shader->shader_input);
+        // vytvoříme shader z embeded shader kodu
+        // POZNÁMKA: používá se stejný shader pro všechny modely
+        np_model_resources_create_model_shader(shader);
         // získame assimp materiál
         C_STRUCT aiMaterial* assimp_material = assimp_scene->mMaterials[i];
         GLuint texture_unit = 0;

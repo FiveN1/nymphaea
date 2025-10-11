@@ -6,6 +6,8 @@
 #include<nymphaea_lib/graphics/program/shader_program/shader_program.h>
 #include<nymphaea_lib/graphics/program/shader_program/shader_maker/shader_maker.h>
 
+// #define NP_SHADER_INPUT_DEBUG
+
 // maximální delka názvu uniformy
 #define NP_UNIFORM_MAX_NAME_LENGTH 64
 // druhy podporovaných uniforem

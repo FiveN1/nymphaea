@@ -10,6 +10,9 @@
 // #### Shader
 // abstrakce od manualního nastavování uniforem.
 // jednoduše získá všechny uniformy z source kodu a automaticky je updatuje.
+//
+// shader se potom nabinduje na mesh pomocí 'np_mesh_set_shader()'.
+// funkce pak vrátí jenom data která je třeba nastavit pro automatické posílání dat do shaderu.
 typedef struct np_shader {
     np_shader_program shader_program;
     np_shader_input shader_input;

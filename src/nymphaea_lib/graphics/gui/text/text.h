@@ -47,6 +47,6 @@ void np_gui_text_on_event(np_gui_text* gui_text, np_gui_context* gui_context, np
 
 
 
-
+// tady použít np_shader?
 
 #endif NP_GUI_TEXT_H

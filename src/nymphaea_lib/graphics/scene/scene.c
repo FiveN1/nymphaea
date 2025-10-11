@@ -14,6 +14,10 @@ void np_scene_create(np_scene* scene) {
     scene->main_camera = NULL;
 }
 
+void np_scene_delete(np_scene* scene) {
+    // ...
+}
+
 void np_scene_draw(np_scene* scene) {
     // draw meshes
     for (size_t i = 0; i < np_mia_registry_get_size(scene->mesh_registry); i++) {

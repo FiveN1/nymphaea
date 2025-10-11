@@ -124,6 +124,7 @@ np_tr3* np_model_get_tr3(np_model* model);
 * [12.06.2025] odebrané normal mapy protože by byla těžká implementace a je mi to k hovnu, winding order preprocess přidán.
 * [13.06.2025] model ted bude závislý na np_scene. Jednodušší ale méně flexibilní. stejně mimo scénu nebude používán.
 * [26.06.2025] předěláno pro nový systém np_shader (starý np_material, np_material_template byl smazán)
+* [11.10.2025] default_model_shader zabudován do source kodu. odstraněn np_model_material struct.
 */
 
 #endif NP_MODEL_H
