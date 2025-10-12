@@ -13,6 +13,8 @@
 * 
 * a collection of glyph (character) data
 *
+* Using the FreeType library.
+*
 */
 typedef struct np_font {
     // texture holding all glyph textures
@@ -54,14 +56,12 @@ np_glyph np_font_get_glyph(np_font* font, char character);
 // - np_font* font -> font instance.
 GLfloat np_font_get_row_offset(np_font* font);
 
-// __NULL_IMPORT_DESCRIPTOR warn: https://www.gamedev.net/forums/topic/645255-building-a-library-with-another-library/
-
 /* Změny
 *
 * [...]
 * [09.10.2025] přidána možnost načítání fontu z předem načtených souborů (byte dat)
-* [10.10.2025] začištění
-*
+* [10.10.2025] začištění.
+* [12.10.2025] freetype překompilován aby nepotřeboval externí zdroje.
 */
 
 #endif NP_FONT_H

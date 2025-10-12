@@ -39,8 +39,10 @@ project "nymphaea"
 		-- link knihoven (je to trochu divné ale jinak tyto soubory nebudou v compilované knihovně...)
 		"GLFW.lib",
 		"Glad.lib",
+		-- debug verze freetype, release verze je v build/freetype/build/Release
+		"msvcrt.lib", -- tohle není v lib/ !!
+		"freetyped.lib",
 		--
-		"freetype.lib",
 		"cglm.lib",
 		-- assimp library and dependencies
 		-- radši build

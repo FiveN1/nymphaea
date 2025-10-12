@@ -149,3 +149,9 @@ void np_font_create_from_face(np_font* font, FT_Face face) {
 // Zdroje:
 // https://stackoverflow.com/questions/68855110/unable-to-upload-bitmaps-from-most-fonts-loaded-by-freetype-to-opengl-as-texture
 // ft unicode : https://stackoverflow.com/questions/60526004/how-to-get-glyph-unicode-using-freetype
+//
+// __NULL_IMPORT_DESCRIPTOR warn: https://www.gamedev.net/forums/topic/645255-building-a-library-with-another-library/
+//
+// Link Error:
+// external error: https://www.gamedev.net/forums/topic/700387-how-do-i-statically-link-freetype-in-vs2017/
+// /MD https://stackoverflow.com/questions/14932262/multi-threaded-dll-md-vs-multi-threaded-mt
