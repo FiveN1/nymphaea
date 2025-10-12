@@ -110,7 +110,7 @@ You can see the application/program is split into 3 stages.
 
 This approach is very simple and you can see some similarities to the touring machine. Where the program data is the tape, that is set in the create function, and is iterated upon in the run function.
 
-## 🌸How to use
+## 🌸How to link
 You can just link this library to your project using premake or you can build it and include the compiled files.
 
 ### Use as linked library:
