@@ -40,14 +40,13 @@ project "nymphaea"
 		"GLFW.lib",
 		"Glad.lib",
 		-- debug verze freetype, release verze je v build/freetype/build/Release
-		"msvcrt.lib", -- tohle není v lib/ !!
-		"freetyped.lib",
+		"freetype-mtd.lib", -- freetype-mt.lib
 		--
-		"cglm.lib",
+		"cglm.lib", -- taky přdat mt/mtd!
 		-- assimp library and dependencies
 		-- radši build
 		"zlibstaticd.lib",
-		"assimp-vc143-mtd.lib",
+		"assimp-vc143-mtd.lib", -- assimp-vc143-mt.lib
 		--
         "opengl32.lib"
     }
@@ -77,3 +76,12 @@ group "Dependencies"
 	include "dependencies/build/GLFW"
     include "dependencies/build/Glad"
 group ""
+
+-- About
+--
+-- every library uses /MT static runtime.
+-- for /MD runtime add msvcrt.lib to links and recompile every library to /MD
+--
+-- Problems with compilation:
+-- https://stackoverflow.com/questions/44774094/premake5-how-to-set-runtime-library-to-multithreaded-dll-md-in-vs2015
+-- GLFW, or Glad may use diffrent runtimes (/MD runtime)

@@ -155,3 +155,7 @@ void np_font_create_from_face(np_font* font, FT_Face face) {
 // Link Error:
 // external error: https://www.gamedev.net/forums/topic/700387-how-do-i-statically-link-freetype-in-vs2017/
 // /MD https://stackoverflow.com/questions/14932262/multi-threaded-dll-md-vs-multi-threaded-mt
+//
+// LIBCMT confilict
+// https://stackoverflow.com/questions/14148933/libcmt-conflicts-with-use-of-other-libs-unresolved-external-symbols
+// - vše musí být v /MD
