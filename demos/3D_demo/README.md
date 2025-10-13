@@ -17,3 +17,6 @@ Run `build.bat` and type `compile` or `c` to compile the program and run it.
 > [!TIP]
 > Use any of the premake commands *(if you type `help` you will get a list of them)* to generate the project files for any editor/compiler you like!
 > Then you can build the project from the generated project files.
+
+## Download
+you can download it [here!](https://github.com/FiveN1/nymphaea/releases/tag/3d_demo_v1.0)
