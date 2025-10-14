@@ -10,7 +10,7 @@
 */
 
 #include"assert/assert.h"
-#include"log/log.h"
+#include"print/print.h"
 #include"memory_debug/mem_debug.h"
 #include"time/time.h"
 

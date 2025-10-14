@@ -92,7 +92,6 @@ void np_font_create_from_face(np_font* font, FT_Face face) {
     // get width & height of atlas
     for (GLubyte c = 0; c < 128; c++) {
         if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
-            np_log_error("np_font: failed to load glyph");
             continue;
         }
         font->atlas_width += face->glyph->bitmap.width;
@@ -118,7 +117,7 @@ void np_font_create_from_face(np_font* font, FT_Face face) {
     for (GLubyte c = 0; c < 128; c++) {
         // load character glyph
         if (FT_Load_Char(face, c, FT_LOAD_RENDER)) {
-            np_log_error("np_font: failed to load glyph");
+            np_debug_print_red("np_font: failed to load glyph");
             continue;
         }
         // draw glyph to the atlas

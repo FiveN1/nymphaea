@@ -1,87 +1,55 @@
 #ifndef NP_FILE_H
 #define NP_FILE_H
 
-#include"nymphaea_lib/core/data_structures/array/array.h"
-#include"nymphaea_lib/core/data_structures/dynamic_array/dynamic_array.h"
-
 /*
 * file.h
 *
 * functions for manipulating files
 *
-* BORDEL!
-*
-* File struct?
-* - data
-* - velikost
-* - název?
 */
 
-// načte čistá data z souboru.
-// #### Parametry:
-// - const char* filename -> cesta k souboru.
-// - long* file_size -> velikost bufferu.
+// open a file.
+// #### Parameters:
+// - const char* filename -> file directory.
 // #### Return:
-// - unsigned char* -> pointer na buffer s daty souboru. (na heapu)
-unsigned char* np_file_load(const char* filename, long* file_data_size);
+// - FILE* -> file handle. NOTE: needs to be cleared with np_file_close() !
+FILE* np_file_open(const char* filename);
+
+// close a file after opening.
+// #### Parameters:
+// - FILE* file -> file handle.
+void np_file_close(FILE* file);
+
+// get file content size in bytes.
+// #### Parameters:
+// - FILE* file -> file handle.
+// #### Return:
+// - long -> file size.
+long np_file_get_size(FILE* file);
+
+// loads filedata to memory.
+// #### Parametry:
+// - FILE* file -> file handle.
+// - void* buffer -> buffer into wich the file content will be written.
+// - long buffer_size -> buffer size.
+void np_file_load(FILE* file, void* buffer, long buffer_size);
+
 // načte data souboru jako string.
+// NOTE: string needs to be freed!
 // #### Parametry:
 // - const char* filename -> cesta k souboru.
 // #### Return:
 // - char* -> pointer na string dat souboru. (na heapu)
-char* np_file_load_string(const char* filename);
-// načte data souboru jako w_string.
-// #### Parametry:
-// - const char* filename -> cesta k souboru.
-// #### Return:
-// - char* -> pointer na string dat souboru. (na heapu)
-char* np_file_load_string_w(const wchar_t* filename);
-// uvolní data souboru. free()
-// #### Parametry:
-// - unsigned char* file_data -> data načtená ze souboru.
-void np_file_free(char* file_data);
-
-//bool np_file_find(const char* filename);
-
-
-
-//np_dynamic_array np_file_get_files_w(const wchar_t* directory, const wchar_t* filemask);
-
-// find files in directory using specified filemask
-// 'directory' must include the filemansk. (example: C:\Folder\*.c)
-// returning array of 'WIN32_FIND_DATA' wich holds data about files
-// use file attributes to check if is a folder or file: https://learn.microsoft.com/en-us/windows/win32/fileio/file-attribute-constants
-WIN32_FIND_DATA* np_file_find_w(const wchar_t* directory, size_t* return_size);
-
-bool np_file_find_check_if_folder(WIN32_FIND_DATA find_file_data);
-
-// writes current working directory (directory in wich the program sits) to a buffer.
-// #### Parameters
-// char* buffer       -> a buffer in wich the directory will be written
-// size_t buffer_size -> size of buffer
-void np_get_work_directory(char* buffer, size_t buffer_size);
-
-// writes absolute directory to buffer with local directory
-//void np_local_directory(char* buffer, char* local_directory);
-
-// get parent directory of file
-// C:/folder/file.c -> C:/folder/
-void np_get_parent_directory(char* buffer, size_t buffer_size, const char* filename);
-
-
-// https://stackoverflow.com/questions/8487986/file-macro-shows-full-path
-
-
-//np_dynamic_array np_file_get_folders_w(const wchar_t* directory, const wchar_t* filemask);
-
+char* np_file_load_string(FILE* file);
 
 /*
 * Změny
-* [27.05.2025] přidáno np_get_work_directory();
+* [27.05.2025] 
+* přidáno np_get_work_directory();
 *
+* [14.10.2025] 
+* cleanup, přidány basic funkce, teď se vše orientuje kolem file handle.
 *
-*
-*
-**/
+*/
 
 #endif NP_FILE_H

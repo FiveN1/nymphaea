@@ -239,5 +239,5 @@ void init_window_callback(GLFWwindow* window_instance) {
 }
 
 void default_event_callback(np_event event, void* data) {
-	np_log_warn("window event callback empty!");
+	np_debug_print_yellow("window event callback empty!");
 }

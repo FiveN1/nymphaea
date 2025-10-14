@@ -73,25 +73,36 @@ np_shader_program np_shader_program_create(const GLchar* vertex_shader_source, c
 np_shader_program np_shader_program_load(const char* vertex_shader_filename, const char* geometry_shader_filename, const char* fragment_shader_filename) {
     np_shader_program shader_program;
     // load the source code from a file
-    char* vertex_shader_source = np_file_load_string(vertex_shader_filename);
-    np_assert(vertex_shader_source != NULL, "SHADER PROGRAM ERROR: vertex shader file not found\n -> path: [%s] does not exist", vertex_shader_filename);
+    FILE* vss_file = np_file_open(vertex_shader_filename);
+    np_assert(vss_file != NULL, "SHADER PROGRAM ERROR: vertex shader file not found\n -> path: [%s] does not exist", vertex_shader_filename);
+    char* vertex_shader_source = np_file_load_string(vss_file);
+    np_file_close(vss_file);
     
+    // load geometry shader file
     char* geometry_shader_source = "";
     if (strlen(geometry_shader_filename) != 0) {
-        geometry_shader_source = np_file_load_string(geometry_shader_filename);
-        np_assert(vertex_shader_source != NULL, "SHADER PROGRAM ERROR: geometry shader file not found\n -> path: [%s] does not exist", geometry_shader_filename);
+        FILE* gss_file = np_file_open(geometry_shader_filename);
+        np_assert(gss_file != NULL, "SHADER PROGRAM ERROR: geometry shader file not found\n -> path: [%s] does not exist", geometry_shader_filename);
+        geometry_shader_source = np_file_load_string(gss_file);
+        np_file_close(gss_file);
     }
-    char* fragment_shader_source = np_file_load_string(fragment_shader_filename);
-    np_assert(fragment_shader_source != NULL, "SHADER PROGRAM ERROR: fragment shader file not found\n -> path: [%s] does not exist", fragment_shader_filename);
+
+    // load fragment shader file
+    FILE* fss_file = np_file_open(fragment_shader_filename);
+    np_assert(fss_file != NULL, "SHADER PROGRAM ERROR: fragment shader file not found\n -> path: [%s] does not exist", fragment_shader_filename);
+    char* fragment_shader_source = np_file_load_string(fss_file);
+    np_file_close(fss_file);
 
     // create the shader program
     shader_program = np_shader_program_create(vertex_shader_source, geometry_shader_source, fragment_shader_source);
+    
     // free the loaded shader source code when compiled
-    np_file_free(vertex_shader_source);
+    free(vertex_shader_source);
     if (strlen(geometry_shader_filename) != 0) {
-        np_file_free(geometry_shader_source);
+        free(geometry_shader_source);
     }
-    np_file_free(fragment_shader_source);
+    free(fragment_shader_source);
+    
     // return the id
     return shader_program;
 }

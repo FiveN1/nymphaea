@@ -47,7 +47,7 @@ np_model* np_model_create(np_scene* scene, const char* filename) {
     // po získání scény máme potřebné informace pro iniciaci polí.
     // získáme root dir modelu - pro načítání textur
     char parent_directory[1024];
-    np_get_parent_directory(parent_directory, sizeof(parent_directory), filename);
+    np_directory_get_parent(filename, parent_directory, sizeof(parent_directory));
     // vytvoříme pole s odkazy na meshe vytvořeny tímto modelem
     np_id_array_create(&model->meshes, assimp_scene->mNumMeshes, sizeof(size_t));
     //

@@ -9,7 +9,8 @@
 // core include
 #include<nymphaea_lib/core/mia/mia.h>
 #include<nymphaea_lib/core/data_structures/array/array.h>
-#include<nymphaea_lib/core/file/file/file.h>
+//#include<nymphaea_lib/core/file/file/file.h>
+#include<nymphaea_lib/core/file/directory/directory.h>
 // graphics include
 #include<nymphaea_lib/graphics/mesh/mesh.h>
 #include<nymphaea_lib/graphics/program/shader_program/shader.h>

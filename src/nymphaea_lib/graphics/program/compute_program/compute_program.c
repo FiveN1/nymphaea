@@ -24,9 +24,14 @@ void np_compute_program_create(np_compute_program* compute_program, const char* 
 }
 
 void np_compute_program_load(np_compute_program* compute_program, const char* compute_shader_source_dir) {
-    char* compute_shader_source = np_file_load_string(compute_shader_source_dir);
+    // load source
+    FILE* css_file = np_file_open(compute_shader_source_dir);
+    np_assert(css_file != NULL, "np_compute_program_load: failed to open file at: %s", compute_shader_source_dir);
+    char* compute_shader_source = np_file_load_string(css_file);
+    np_file_close(css_file);
+    // create program
     np_compute_program_create(compute_program, compute_shader_source);
-    np_file_free(compute_shader_source);
+    free(compute_shader_source);
 }
 
 void np_compute_program_delete(np_compute_program* compute_program) {

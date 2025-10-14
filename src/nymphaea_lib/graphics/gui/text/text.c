@@ -87,7 +87,7 @@ void np_gui_text_on_event(np_gui_text* gui_text, np_gui_context* gui_context, np
 
                 //if (point_x > 1.0f)
 
-                np_log("point: %f, %f", point_x, point_y);
+                np_print("point: %f, %f", point_x, point_y);
                 
                 // get intersected letter id
                 size_t id = np_text_get_index_by_position_clamp(np_gui_text_get_text(gui_text), point_x, point_y);

@@ -29,7 +29,7 @@ typedef long long           i64;
 #endif
 
 // debug functions
-#include"nymphaea_lib/core/debug/log/log.h"
+#include"nymphaea_lib/core/debug/print/print.h"
 #include"nymphaea_lib/core/debug/assert/assert.h"
 #include"nymphaea_lib/core/debug/memory_debug/mem_debug.h"
 #include"nymphaea_lib/core/debug/time/time.h"

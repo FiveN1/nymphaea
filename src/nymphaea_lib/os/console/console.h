@@ -1,7 +1,6 @@
 #ifndef NP_CONSOLE_H
 #define NP_CONSOLE_H
 
-#include"pch.h"
 //#include"console_defines.h"
 
 typedef struct console {
@@ -13,6 +12,7 @@ typedef struct console {
 void console_create(console* instance);
 
 
+/*
 #define CONCOL_BLACK    0x0000
 #define CONCOL_BLUE     0x0001
 #define CONCOL_GREEN    0x0002
@@ -21,5 +21,6 @@ void console_create(console* instance);
 #define CONCOL_PURPLE   0x0005
 #define CONCOL_YELLOW   0x0006
 #define CONCOL_WHITE    0x0007
+*/
 
 #endif NP_CONSOLE_H
