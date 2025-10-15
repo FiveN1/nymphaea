@@ -2,7 +2,7 @@
 #define NP_MESH_MIA_SYSTEM_H
 
 #include"nymphaea_lib/core/mia/mia.h"
-#include"nymphaea_lib/graphics/program/shader_program/shader_program.h"
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
 
 /*
 * Mesh MIA Systems

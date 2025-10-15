@@ -1,16 +1,17 @@
 #include"pch.h"
 #include"print.h"
+#include"nymphaea_lib/core/string/string.h"
 
 void np_printc(unsigned short variant, const char* message, ...) {
     // format string
     va_list args;
     va_start(args, message);
-    char* msg = stringf(message, args);
+    char* msg = np_stringf(message, args);
     va_end(args);
     // call bound function
     (*g_np_log_callback)(msg, variant);
     // clear memory
-    stringffree(msg);
+    free(msg);
 } 
 
 #ifdef NP_PLATFORM_WINDOWS

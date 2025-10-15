@@ -1,10 +1,8 @@
 #ifndef NP_WINDOW_H
 #define NP_WINDOW_H
 
-#include"pch.h" // for bool
-
 #include"nymphaea_lib/graphics/renderer/renderer.h"
-#include"nymphaea_lib/core/event/event.h"
+#include"event/event.h"
 
 // event callback
 typedef void(*np_event_callback)(np_event, void*);

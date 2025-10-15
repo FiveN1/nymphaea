@@ -1,7 +1,7 @@
 #include"pch.h"
 #include"string.h"
 
-void np_stringf(const char* format, va_list args) {
+char* np_stringf(const char* format, va_list args) {
     // credit: https://stackoverflow.com/questions/66094905/how-to-pass-a-formatted-string-as-a-single-argument-in-c
     int len = vsnprintf(NULL, 0, format, args);
     if(len < 0) 

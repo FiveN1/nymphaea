@@ -1,6 +1,6 @@
 #include"pch.h"
 #include"dsa_texture_2d.h"
-#include"nymphaea_lib/core/file/image/image.h"
+#include"nymphaea_lib/core/file_system/image/image.h"
 
 void np_dsa_texture_2d_create_from_file(np_dsa_texture_2d* dsa_texture_2d, GLenum format, const char* filename) {
     // temporary image in cpu memory

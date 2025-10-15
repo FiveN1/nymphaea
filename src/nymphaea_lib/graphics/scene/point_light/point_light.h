@@ -5,7 +5,7 @@
 #include"cglm/mat4.h"
 #include"cglm/cglm.h"
 
-#include<nymphaea_lib/graphics/program/shader_program/shader_program.h>
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
 
 #include<nymphaea_lib/graphics/scene/scene.h>
 

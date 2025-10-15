@@ -59,27 +59,6 @@
 * - np_mia_alloc
 * - np_mia_free
 * - np_mia_get_by_id
-*
-* ## Update log
-* 
-* #### 04.08.2024
-* Created basic ECS implementation
-* #### 05.08.2024
-* Added all ECS functions
-*
-* #### 05.08.2024 - 22.09.2024
-* Experimented with diffrent architectures.
-*
-* #### 22.09.2024
-* Created the MIA architecture
-* Translated comments to english
-*
-* #### 05.11.2024
-* Finnished MIA core architecture after experimenting with a non-MIA approach.
-*
-* #### 09.11.2024
-* Removed the need for passing mia to every functions by defining registries with a pointer rather than an id.
-* This simplified the whole system even more and removed the mess. also removed 'np_mia_registry_get' function since there is no need for that
 */
 typedef np_id_array np_mia;
 /*
@@ -128,10 +107,31 @@ void* np_mia_get_by_id(np_mia_registry* registry, size_t id);
 
 
 /*
-* Změny
-* [...]
-* [07.06.2025] přidána funkce np_mia_get()
+* ## Update log:
 *
-**/
+* #### 04.08.2024
+* Created basic ECS implementation
+*
+* #### 05.08.2024
+* Added all ECS functions
+*
+* #### 05.08.2024 - 22.09.2024
+* Experimented with diffrent architectures.
+*
+* #### 22.09.2024
+* Created the MIA architecture
+* Translated comments to english
+*
+* #### 05.11.2024
+* Finnished MIA core architecture after experimenting with a non-MIA approach.
+*
+* #### 09.11.2024
+* Removed the need for passing mia to every functions by defining registries with a pointer rather than an id.
+* This simplified the whole system even more and removed the mess. also removed 'np_mia_registry_get' function since there is no need for that
+*
+* #### 07.06.2025
+* přidána funkce np_mia_get()
+*
+*/
 
 #endif NP_MIA_H

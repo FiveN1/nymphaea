@@ -1,7 +1,7 @@
 #ifndef NP_MODEL_RESOURCES_H
 #define NP_MODEL_RESOURCES_H
 
-#include"nymphaea_lib/graphics/program/shader_program/shader.h"
+#include"nymphaea_lib/graphics/shader/shader.h"
 
 
 // vytvoří model shader z předem načteného shader source.

@@ -5,7 +5,7 @@
 #include"nymphaea_lib/core/data_structures/array/array.h"
 //
 #include"nymphaea_lib/graphics/font/font.h"
-#include"nymphaea_lib/graphics/program/shader_program/shader_program.h"
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
 #include"nymphaea_lib/graphics/camera/camera_2d/camera_2d.h"
 #include"nymphaea_lib/graphics/window/window.h"
 

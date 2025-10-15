@@ -3,7 +3,7 @@
 
 #include<glad/glad.h>
 
-#include"nymphaea_lib/graphics/program/shader_program/shader_program.h"
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
 
 /*
 * ## Direct State Access Texture 2D

@@ -1,7 +1,7 @@
 #ifndef NP_SHADER_DATA_H
 #define NP_SHADER_DATA_H
 
-#include"shader_input.h"
+#include"../shader_input/shader_input.h"
 
 #include<nymphaea_lib/core/data_structures/array/array.h>
 #include<nymphaea_lib/core/data_structures/dynamic_array/dynamic_array.h>
@@ -38,6 +38,7 @@ void np_shader_data_delete(np_shader_data* shader_data);
 // - np_shader_data* shader_data -> instance dat shaderu.
 // - char* uniform -> název uniformy do které chceme nastavit data.
 void* np_shader_data_get(np_shader_data* shader_data, char* uniform);
+
 // draw callback používán pro odesílání uniforem a malování meshe.
 void np_shader_data_draw_callback(np_mesh* mesh, np_shader_program shader_program, void* data);
 

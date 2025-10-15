@@ -1,10 +1,11 @@
 #ifndef NP_SHADER_INPUT_H
 #define NP_SHADER_INPUT_H
 
-#include<nymphaea_lib/core/data_structures/dynamic_array/dynamic_array.h>
-#include<nymphaea_lib/core/data_structures/array/array.h>
-#include<nymphaea_lib/graphics/program/shader_program/shader_program.h>
-#include<nymphaea_lib/graphics/program/shader_program/shader_maker/shader_maker.h>
+#include"nymphaea_lib/core/data_structures/dynamic_array/dynamic_array.h"
+#include"nymphaea_lib/core/data_structures/array/array.h"
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
+
+#include"../shader_maker/shader_maker.h"
 
 // #define NP_SHADER_INPUT_DEBUG
 

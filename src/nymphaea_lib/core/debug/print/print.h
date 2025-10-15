@@ -2,7 +2,7 @@
 #define NP_PRINT_H
 
 /*
-* log.h
+* print.h
 *
 * this file contains all functions used for logging a message to anything you like
 * by default the message will be logged to console

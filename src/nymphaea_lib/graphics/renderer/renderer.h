@@ -17,8 +17,10 @@ void np_renderer_delete();
 
 
 /*
-* Změny
-* [30.05.2025] přidána funkce np_renderer_create(), np_renderer_delete()
+* ## Změny:
+*
+* #### 30.05.2025 
+* přidána funkce np_renderer_create(), np_renderer_delete()
 *
 *
 *

@@ -7,7 +7,7 @@
 #include"nymphaea_lib/graphics/text/text_2d/text_2d.h"
 
 
-#include"nymphaea_lib/core/event/event.h"
+#include"nymphaea_lib/graphics/window/event/event.h"
 
 #include"nymphaea_lib/core/data_structures/array/array.h"
 

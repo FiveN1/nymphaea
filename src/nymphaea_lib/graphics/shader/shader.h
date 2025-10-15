@@ -1,9 +1,9 @@
 #ifndef NP_SHADER_H
 #define NP_SHADER_H
 
-#include"shader_program.h"
-#include"shader_input.h"
-#include"shader_data.h"
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
+#include"shader_input/shader_input.h"
+#include"shader_data/shader_data.h"
 
 #include<nymphaea_lib/graphics/mesh/mesh.h>
 
@@ -25,6 +25,7 @@ typedef struct np_shader {
 // - const char* gs_filename -> cesta k souboru s geometry source.
 // - const char* fs_filename -> cesta k souboru s fragment source.
 void np_shader_create_file(np_shader* shader, const char* vs_filename, const char* gs_filename, const char* fs_filename);
+
 // vytvoř shader přímo z string s source kodem.
 // #### Parametry:
 // - np_shader* shader -> instance shaderu.
@@ -32,11 +33,13 @@ void np_shader_create_file(np_shader* shader, const char* vs_filename, const cha
 // - const char* gs -> geometry source.
 // - const char* fs -> fragment source.
 void np_shader_create_source(np_shader* shader, const char* vs, const char* gs, const char* fs);
+
 // uvolni data shaderu.
 // POZOR: všehcny np_shader_data vytvořena z tohoto shaderu musí být předem odstraněna jelikož drží odkaz na np_shader_input.
 // #### Parametry:
 // - np_shader* shader -> instance shaderu.
 void np_shader_delete(np_shader* shader);
+
 // nastav shader meshe.
 // vrací np_shader_data* pomocí kterého pak lze nastavit data uniforem pomocí funkce np_shader_data_get()
 // #### Parametry:
@@ -45,11 +48,16 @@ void np_shader_delete(np_shader* shader);
 np_shader_data* np_mesh_set_shader(np_mesh* mesh, np_shader* shader);
 
 /*
-* Změny
+* ## Změny
 *
-* [24.06.2025] vytvořeno pro abstrakci od sraní s shadery
-* [25.06.2025] implementace, plně funkční a snadno použitelné. (snad už finální podoba)
-* [26.06.2025] přidána delete funkce a poznámky. také přidána funkce pro načítání shaderu z source (string). STABILNÍ
+* #### 24.06.2025
+* vytvořeno pro abstrakci od sraní s shadery
+*
+* #### 25.06.2025
+* implementace, plně funkční a snadno použitelné. (snad už finální podoba)
+*
+* #### 26.06.2025
+* přidána delete funkce a poznámky. také přidána funkce pro načítání shaderu z source (string). STABILNÍ
 *
 */
 #endif NP_SHADER_H

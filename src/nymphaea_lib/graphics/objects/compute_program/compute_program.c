@@ -1,6 +1,6 @@
 #include"pch.h"
 #include"compute_program.h"
-#include"nymphaea_lib/core/file/file/file.h"
+#include"nymphaea_lib/core/file_system/file/file.h"
 
 void np_compute_program_create(np_compute_program* compute_program, const char* compute_shader_source) {
     GLint success;

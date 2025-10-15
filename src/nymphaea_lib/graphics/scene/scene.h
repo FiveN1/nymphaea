@@ -5,8 +5,8 @@
 
 #include<nymphaea_lib/graphics/camera/camera_3d/camera_3d.h>
 
-#include<nymphaea_lib/graphics/program/shader_program/shader.h>
-#include<nymphaea_lib/graphics/program/shader_program/shader_maker/shader_maker.h>
+#include<nymphaea_lib/graphics/shader/shader.h>
+#include<nymphaea_lib/graphics/shader/shader_maker/shader_maker.h>
 
 //
 // !! UNDER DEVELOPEMENT !!

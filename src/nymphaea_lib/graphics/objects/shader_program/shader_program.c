@@ -1,6 +1,6 @@
 #include"pch.h"
 #include"shader_program.h"
-#include"nymphaea_lib/core/file/file/file.h"
+#include"nymphaea_lib/core/file_system/file/file.h"
 
 np_shader_program np_shader_program_create(const GLchar* vertex_shader_source, const GLchar* geometry_shader_source, const GLchar* fragment_shader_source) {
     // compile status of the shader sources

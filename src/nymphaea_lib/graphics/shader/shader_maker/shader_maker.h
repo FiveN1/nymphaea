@@ -1,7 +1,7 @@
 #ifndef NP_SHADER_MAKER_H
 #define NP_SHADER_MAKER_H
 
-#include<nymphaea_lib/core/data_structures/array/array.h>
+#include"nymphaea_lib/core/data_structures/array/array.h"
 
 // všechny druhy bloků které jsou použity pro stvoření shader source
 // co je block?

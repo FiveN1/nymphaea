@@ -2,7 +2,7 @@
 #define NP_GUI_RESOURCES_H
 
 #include"nymphaea_lib/graphics/font/font.h"
-#include"nymphaea_lib/graphics/program/shader_program/shader_program.h"
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
 
 /*
 * GUI Resources

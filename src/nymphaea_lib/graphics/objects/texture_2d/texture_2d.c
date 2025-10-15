@@ -1,6 +1,6 @@
 #include"pch.h"
 #include"texture_2d.h"
-#include"nymphaea_lib/core/file/image/image.h"
+#include"nymphaea_lib/core/file_system/image/image.h"
 
 void np_texture_2d_create_from_file(np_texture_2d* texture_2d, GLenum format, GLenum filter, GLenum wrap, const char* filename) {
     // flip image on load

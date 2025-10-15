@@ -6,7 +6,7 @@
 #include"nymphaea_lib/graphics/text/text.h"
 #include"nymphaea_lib/graphics/transform/transform_2d/transform_2d.h"
 
-#include"nymphaea_lib/core/event/event.h"
+#include"nymphaea_lib/graphics/window/event/event.h"
 //#include"os/window/window.h"
 
 #include"nymphaea_lib/graphics/text/text_highlight/text_highlight.h"

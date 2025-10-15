@@ -2,7 +2,7 @@
 #define NP_FREECAM_H
 
 #include"nymphaea_lib/graphics/camera/camera_3d/camera_3d.h"
-#include"nymphaea_lib/core/event/event.h"
+#include"nymphaea_lib/graphics/window/event/event.h"
 #include"nymphaea_lib/graphics/window/window.h" // zahrnuto kvůli GLFW knihovně.
 #include"nymphaea_lib/graphics/window/input/input.h"
 

@@ -4,7 +4,7 @@
 #include"nymphaea_lib/graphics/objects/vbo/vbo.h"
 #include"nymphaea_lib/graphics/objects/ebo/ebo.h"
 #include"nymphaea_lib/graphics/objects/vao/vao.h"
-#include"nymphaea_lib/graphics/program/shader_program/shader_program.h"
+#include"nymphaea_lib/graphics/objects/shader_program/shader_program.h"
 // addtitonal includes related to mesh
 #include"mesh_data/mesh_data.h"
 #include"mesh_data/procedural/mesh_procedural.h"
