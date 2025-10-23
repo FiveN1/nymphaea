@@ -48,6 +48,10 @@ void np_gui_create(np_gui_context* gui_context) {
     np_gui_resources_set_text_shader(&gui_context->default_text_shader);
     np_gui_resources_set_color_shader(&gui_context->default_color_shader);
 
+    //np_shader_create_source("", "", "");
+
+    np_gui_resources_set_text_shader2(&gui_context->default_text_shader2);
+
     // create view camera for gui
     np_camera_2d_create(&gui_context->camera);
 

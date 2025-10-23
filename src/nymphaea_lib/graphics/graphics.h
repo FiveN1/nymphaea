@@ -23,8 +23,8 @@
 #include"objects/dsa_texture_2d/dsa_texture_2d.h"
 
 // programs / shaders
-#include"program/shader_program/shader_program.h"
-#include"program/compute_program/compute_program.h"
+#include"objects/shader_program/shader_program.h"
+#include"objects/compute_program/compute_program.h"
 
 // the canvas
 #include"mesh/mesh.h"

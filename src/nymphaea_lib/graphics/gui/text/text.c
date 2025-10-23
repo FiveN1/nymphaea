@@ -4,9 +4,11 @@
 np_gui_text* np_gui_text_create(np_gui_context* gui_context, char* text_string) {
     // allocate space for text
     np_gui_text* gui_text = np_mia_alloc(np_gui_get_elements(gui_context, NP_GUI_TEXT));
+    
     // create highlight
     // NOTE: this first so that the mesh is rendered behind the text
     np_text_highlight_create(&gui_text->highlight, np_mia_alloc(&gui_context->mesh_registry));
+    
     // set highlight shader
     np_mesh_set_shader_program(gui_text->highlight.mesh, gui_context->default_color_shader);
     np_mesh_set_draw_callback(gui_text->highlight.mesh, &np_gui_color_shader_use);
@@ -14,17 +16,28 @@ np_gui_text* np_gui_text_create(np_gui_context* gui_context, char* text_string) 
     data2->text_transform = &gui_text->transform;
     data2->camera_2d = &gui_context->camera;
     glm_vec4_copy(gui_context->text_highlight_color, data2->color);
+    
     // create text
     np_text_create(&gui_text->text, text_string, &gui_context->default_font, np_mia_alloc(&gui_context->mesh_registry));
+    
     // set text shader
-    np_mesh_set_shader_program(np_text_get_mesh(&gui_text->text), gui_context->default_text_shader);
-    np_mesh_set_draw_callback(np_text_get_mesh(&gui_text->text), &np_gui_text_shader_use);
-    np_gui_text_shader_data* data = (np_gui_text_shader_data*)np_mesh_set_draw_data(np_text_get_mesh(&gui_text->text), sizeof(np_gui_text_shader_data));
-    data->font_atlas = np_font_get_atlas(&gui_context->default_font);
-    data->text_transform = &gui_text->transform;
-    data->camera_2d = &gui_context->camera;
+    //np_mesh_set_shader_program(np_text_get_mesh(&gui_text->text), gui_context->default_text_shader);
+    //np_mesh_set_draw_callback(np_text_get_mesh(&gui_text->text), &np_gui_text_shader_use);
+    //np_gui_text_shader_data* data = (np_gui_text_shader_data*)np_mesh_set_draw_data(np_text_get_mesh(&gui_text->text), sizeof(np_gui_text_shader_data));
+    //data->font_atlas = np_font_get_atlas(&gui_context->default_font);
+    //data->text_transform = &gui_text->transform;
+    //data->camera_2d = &gui_context->camera;
+
+    np_shader_data* data = np_mesh_set_shader(np_text_get_mesh(&gui_text->text), &gui_context->default_text_shader2);
+    *(np_texture_2d*)np_shader_data_get(data, "glyph") = np_font_get_atlas(&gui_context->default_font);
+    *(mat3**)np_shader_data_get(data, "model_matrix") = np_transform_2d_get(&gui_text->transform);
+    *(mat3**)np_shader_data_get(data, "view_matrix") = np_transform_2d_get(&gui_context->camera.transform);
+    *(mat4**)np_shader_data_get(data, "proj_matrix") = np_camera_2d_get_matrix(&gui_context->camera);
+
+
     // create transform
     np_transform_2d_create(&gui_text->transform);
+    
     // return allocated address
     return gui_text;
 }

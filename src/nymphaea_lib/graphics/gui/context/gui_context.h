@@ -12,6 +12,9 @@
 // shaders
 #include"shader/shader.h"
 
+#include"nymphaea_lib/graphics/shader/shader.h"
+
+
 // ## GUI Context
 // holds all nymphaea GUI data.
 typedef struct np_gui_context { // rename na np_gui?
@@ -27,7 +30,7 @@ typedef struct np_gui_context { // rename na np_gui?
 
     vec4 text_highlight_color;
 
-    //np_shader default_text_shader;
+    np_shader default_text_shader2;
 
     // co bude gui obsahovat?
     // + camera_2d

@@ -12,6 +12,13 @@
 // maximální delka názvu uniformy
 #define NP_UNIFORM_MAX_NAME_LENGTH 64
 // druhy podporovaných uniforem
+//
+// jak implementovat nový typ uniformy:
+// 1. přidat enum sem do listu.
+// 2. přidat typ do np_get_gl_uniform_type(), pro convert z GL uniform typů.
+// 3. jít do shader_data.c a přidat typ do get_uniform_data_type_size()
+// 4. nakonec v shader_data.c implementovat posílání dat do shaderu v set_uniform_data()
+//
 enum np_uniform_type {
     NP_UNIFORM_FLOAT = 0,
     NP_UNIFORM_VEC2,

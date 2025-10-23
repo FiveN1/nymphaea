@@ -7,8 +7,8 @@
 
 // přidá uniformu do pole.
 // uniforma se nesmí opakovat a musí pocházet z stejneho shaderu.
-// proto je funkce provátní.
-void add_uniform(np_shader_input* shader_input, enum np_uniform_type type, const char* name);
+// proto je funkce privátní.
+void np_add_uniform(np_shader_input* shader_input, enum np_uniform_type type, const char* name);
 // převď OpenGL uniform enum na np uniformu
 enum np_uniform_type np_get_gl_uniform_type(GLenum uniform_type);
 
@@ -33,7 +33,8 @@ void np_shader_input_create(np_shader_input* shader_input, np_shader_program sha
         GLsizei length;
         // získáme data o uniformě
         glGetActiveUniform(shader_program, i, NP_UNIFORM_MAX_NAME_LENGTH, &length, &size, &gl_type, name);
-        add_uniform(shader_input, np_get_gl_uniform_type(gl_type), name);
+        // přidáme uniformu
+        np_add_uniform(shader_input, np_get_gl_uniform_type(gl_type), name);
     }
     // debug
     #ifdef NP_SHADER_INPUT_DEBUG
@@ -65,10 +66,10 @@ void np_shader_input_print(np_shader_input* shader_input) {
 // local implementace
 //
 
-void add_uniform(np_shader_input* shader_input, enum np_uniform_type type, const char* name) {
+void np_add_uniform(np_shader_input* shader_input, enum np_uniform_type type, const char* name) {
     // check zda je typ uniformy validní
     if (type >= NP_UNIFORM_TYPE_AMOUNT) {
-        np_debug_print_red("np_shader_input: invalid uniform type: %llu", (size_t)type);
+        np_debug_print_red("np_shader_input: invalid uniform type: %llu, uniform name: %s", (size_t)type, name);
         return;
     }
     // pokud je název uniformy delší nebo stejný jako velikost bufferu tak vrátíme.
@@ -93,6 +94,7 @@ enum np_uniform_type np_get_gl_uniform_type(GLenum uniform_type) {
         case GL_FLOAT_VEC2: return NP_UNIFORM_VEC2;
         case GL_FLOAT_VEC3: return NP_UNIFORM_VEC3;
         case GL_FLOAT_VEC4: return NP_UNIFORM_VEC4;
+        case GL_FLOAT_MAT3: return NP_UNIFORM_MAT3;
         case GL_FLOAT_MAT4: return NP_UNIFORM_MAT4;
         case GL_SAMPLER_2D: return NP_UNIFORM_SAMPLER2D;
     }

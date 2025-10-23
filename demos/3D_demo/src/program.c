@@ -26,7 +26,12 @@ void program_create(program_data* program) {
 
     // scene
     np_scene_create(&program->scene);
+    // set main camera
     program->scene.main_camera = np_freecam_get_camera(&program->freecam);
+
+    // add point light
+    
+    // add directional light
 
     // add model to scene
     np_model_create(&program->scene, "res/models/garfield/scene.gltf");

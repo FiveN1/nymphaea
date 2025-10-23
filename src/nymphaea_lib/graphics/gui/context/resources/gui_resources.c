@@ -48,6 +48,53 @@ void np_gui_resources_set_text_shader(np_shader_program* shader_program) {
     *shader_program = np_shader_program_create(text_shader_vert, "", text_shader_frag);
 }
 
+void np_gui_resources_set_text_shader2(np_shader* shader) {
+    // POZNÁMKA: je uložen jako string array protože jehomlifetime končí s touhle funkcí. nechceme zbytečně zaplnovat pamět!
+    
+    // text vert shader
+    const char text_shader_vert[] =
+    "#version 460 core\n"
+
+    "layout (location = 0) in vec2 position;\n"
+
+    "layout (location = 1) in vec2 uv_in;\n"
+
+    "uniform mat3 model_matrix;\n"
+    "uniform mat3 view_matrix;\n"
+    "uniform mat4 proj_matrix;\n"
+
+    "out vec2 uv;\n"
+
+    "void main() {\n"
+
+        "gl_Position = proj_matrix * vec4(view_matrix * model_matrix * vec3(position, 1.0f), 1.0f);\n"
+
+        "uv = uv_in;\n"
+    "}";
+    // text frag shader
+    const char text_shader_frag[] = 
+    "#version 460 core\n"
+
+    "in vec2 uv;\n"
+
+    "uniform sampler2D glyph;\n"
+
+    "out vec4 color;\n"
+
+    "void main() {\n"
+
+        "vec4 fragment = vec4(1.0, 1.0, 1.0, texture(glyph, uv).r);\n"
+        "if (fragment.a < 0.1) {\n"
+            "discard;\n"
+        "}\n"
+
+        "color = fragment;\n"
+    "}";
+
+    // set shader program
+    np_shader_create_source(shader, text_shader_vert, "", text_shader_frag);
+}
+
 void np_gui_resources_set_color_shader(np_shader_program* np_shader_program) {
     // POZNÁMKA: je uložen jako string array protože jehomlifetime končí s touhle funkcí. nechceme zbytečně zaplnovat pamět!
 

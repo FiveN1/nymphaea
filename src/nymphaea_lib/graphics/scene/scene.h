@@ -18,13 +18,16 @@
 typedef struct np_scene {
     np_mia mia;
     np_mia_registry* mesh_registry;
+
     np_mia_registry* tr3_registry;
+    
     np_mia_registry* point_light_registry;
     // directional light(s)?
 
     np_mia_registry* model_registry;
 
     // camera...
+    // spíše view matrix?
     np_camera_3d* main_camera;
 
     // light...
@@ -63,12 +66,19 @@ void np_scene_set_shader_data_lights(np_scene* scene, np_shader_data* shader_dat
 */
 
 /*
-* Změny
+* ## Změny
 *
-* [10.06.2025] vytvořeno - aby bylo možné podávat data o světě do materiálu pomocí nějakého kontejneru.
-* [13.06.2025] přidány nějaké zakladní funkce.
-* [14.06.2025] přemýšlím jak udělat flexibilní uniform send system...
-* [11.10.2025] menší začištění.
+* #### 10.06.2025 
+* vytvořeno - aby bylo možné podávat data o světě do materiálu pomocí nějakého kontejneru.
+*
+* #### 13.06.2025
+* přidány nějaké zakladní funkce.
+*
+* #### 14.06.2025
+* přemýšlím jak udělat flexibilní uniform send system...
+*
+* #### 11.10.2025
+* menší začištění.
 */
 
 
