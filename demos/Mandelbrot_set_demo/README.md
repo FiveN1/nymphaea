@@ -1,11 +1,12 @@
 # Mandelbrot set demo
 This demo creates lets you explore the mandelbrot set fractal.
 It demonstrates the use of compute shaders and buffer objects in Nymphaea.
+(still indev)
 
 <img src="https://github.com/FiveN1/nymphaea/blob/indev/demos/Mandelbrot_set_demo/res/img/screenshot1.png" alt="Mandelbrot set demo image" width="512"/>
 
 ## Controls
-use WSAD for movement and QE for zoom.
+use `WSAD` for movement and `QE` for zoom.
 
 ## How to run?
 Run `build.bat` and type `compile` or `c` to compile the program and run it.
