@@ -2,11 +2,11 @@
 #include"rect.h"
 
 void np_rect_create(np_rect* rect) {
-    np_transform_2d_create(&rect->transform_2d);
+    np_tr2_create(&rect->transform_2d);
     glm_vec2_zero(rect->size);
 }
 
-np_transform_2d* np_rect_get_transform_2d(np_rect* rect) {
+np_tr2* np_rect_get_transform_2d(np_rect* rect) {
     return &rect->transform_2d;
 }
 

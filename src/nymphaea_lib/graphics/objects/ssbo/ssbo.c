@@ -25,3 +25,9 @@ void np_ssbo_bind_base(np_ssbo ssbo, GLuint index) {
 void np_ssbo_unbind() {
     glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
 }
+
+void np_ssbo_set_data(np_ssbo ssbo, void* data, GLuint offset, GLsizeiptr size) {
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, ssbo);
+    glBufferSubData(GL_SHADER_STORAGE_BUFFER, offset, size, data);
+    glBindBuffer(GL_SHADER_STORAGE_BUFFER, 0);
+}

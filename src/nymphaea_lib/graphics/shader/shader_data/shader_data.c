@@ -2,6 +2,7 @@
 #include"shader_data.h"
 // všechny data typy které mohou být použité materiálem.
 #include<nymphaea_lib/graphics/objects/texture_2d/texture_2d.h>
+#include"nymphaea_lib/graphics/objects/dsa_texture_2d/dsa_texture_2d.h"
 #include<nymphaea_lib/graphics/transform/transform_3d/transform_3d.h>
 
 //
@@ -11,7 +12,7 @@
 // vrátí velikost dat uniformy.
 size_t get_uniform_data_type_size(enum np_uniform_type uniform_type);
 // pošle data do uvedené uniformy v shaderu na GPU.
-void set_uniform_data(GLint uniform_location, char* uniform_name, void* uniform_data, enum np_uniform_type type);
+void set_uniform_data(GLint uniform_location, char* uniform_name, void* uniform_data, enum np_uniform_type type, np_shader_program shader_program);
 
 //
 // implementace
@@ -108,7 +109,7 @@ void np_shader_data_draw_callback(np_mesh* mesh, np_shader_program shader_progra
             // lokace uniformy v shaderu
             GLint uniform_location = glGetUniformLocation(shader_program, uniform_name);
             // pro každý typ uniformy použijeme jinou funkci
-            set_uniform_data(uniform_location, uniform_name, uniform_data, (enum np_uniform_type)type_id);
+            set_uniform_data(uniform_location, uniform_name, uniform_data, (enum np_uniform_type)type_id, shader_program);
         }
     }
     // namalujem mesh s shaderem a daty
@@ -127,13 +128,15 @@ size_t get_uniform_data_type_size(enum np_uniform_type uniform_type) {
         case NP_UNIFORM_VEC4: return sizeof(vec3);
         case NP_UNIFORM_MAT3: return sizeof(mat3*);
         case NP_UNIFORM_MAT4: return sizeof(mat4*);
-        case NP_UNIFORM_SAMPLER2D: return sizeof(np_texture_2d);
+        // (28.10.2025) sampler rozdělen na 2 typy jelikož tu jsou 2 způsoby bindování
+        case NP_UNIFORM_SAMPLER2D: return sizeof(GLuint);
+        case NP_UNIFORM_SAMPLER2D_DSA: return sizeof(GLuint);
     }
     np_debug_print_yellow("np_shader_data: material data type id_%u, not implemented", (GLuint)uniform_type);
     return (size_t)0;
 }
 
-void set_uniform_data(GLint uniform_location, char* uniform_name, void* uniform_data, enum np_uniform_type type) {
+void set_uniform_data(GLint uniform_location, char* uniform_name, void* uniform_data, enum np_uniform_type type, np_shader_program shader_program) {
      switch (type) {
         case NP_UNIFORM_FLOAT:
             glUniform1f(uniform_location, *(GLfloat*)uniform_data);
@@ -160,6 +163,9 @@ void set_uniform_data(GLint uniform_location, char* uniform_name, void* uniform_
             return;
         case NP_UNIFORM_SAMPLER2D: 
             np_texture_2d_bind(*(np_texture_2d*)uniform_data);
+            return;
+        case NP_UNIFORM_SAMPLER2D_DSA: 
+            np_dsa_texture_2d_bind_sampler_unit(*(np_dsa_texture_2d*)uniform_data, shader_program, 0, uniform_name);
             return;
     }
     np_debug_print_yellow("np_shader_data: type: %u not supported", (GLuint)type);

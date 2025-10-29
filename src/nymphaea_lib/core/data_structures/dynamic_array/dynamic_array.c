@@ -71,7 +71,8 @@ size_t np_dynamic_array_get_size(np_dynamic_array* dynamic_array) {
 
 void np_dynamic_array_resize(np_dynamic_array* dynamic_array, size_t new_size) {
     dynamic_array->data = realloc(dynamic_array->data, dynamic_array->type_size * new_size);
-    np_assert(dynamic_array->data != NULL, "np_dynamic_array realloc error");
+    // (25.10.2025) NOTE: if new size is 0 then data will be NULL!
+    np_assert(dynamic_array->data != NULL || new_size == 0, "np_dynamic_array realloc error");
     dynamic_array->block_size = new_size;
 }
 

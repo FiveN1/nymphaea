@@ -18,14 +18,12 @@
 *
 */
 
-void np_gui_resources_set_text_shader(np_shader_program* shader_program);
-
 void np_gui_resources_set_color_shader(np_shader_program* np_shader_program);
 
 void np_gui_resources_set_font_proggy_clean(np_font* font);
 
 
-void np_gui_resources_set_text_shader2(np_shader* shader);
+void np_gui_resources_set_text_shader(np_shader* shader);
 
 /* Změny
 * [08.10.2025] vytvořeno, špatný postup, originálně měly být všechny data uloženy v struct.

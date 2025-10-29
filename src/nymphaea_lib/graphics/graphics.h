@@ -46,6 +46,9 @@
 
 #include"text/text_highlight/text_highlight.h"
 
+// debug
+#include"debug/delta_time.h"
+
 // Graphics User Interface
 //#include"gui/npgui.h"
 #include"gui/gui.h"

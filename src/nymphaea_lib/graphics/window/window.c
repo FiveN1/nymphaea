@@ -7,8 +7,19 @@ void init_window_callback(GLFWwindow* window_instance);
 void default_event_callback(np_event event, void* data);
 
 void np_window_create(np_window* window, void* program_data, int width, int height, const char* title) {
+	// set window size
     window->width = width;
     window->height = height;
+
+	// set aspect ratio
+	// used in window resize event
+	window->aspect_ratio = (float)width / (float)height;
+
+	// set window mode
+	window->mode = NP_WINDOW_MODE_KEEP;
+
+	// set program data
+	// used in event callback
 	window->program_data = program_data;
 
 	// tohle asi nechat?
@@ -87,6 +98,10 @@ GLFWwindow* np_window_get_glfw_window(np_window* window) {
 	return window->window;
 }
 
+void np_widnow_set_mode(np_window* window, enum np_widnow_modes mode) {
+	window->mode = mode;
+}
+
 //
 // GLFW Event callbacks
 //
@@ -122,6 +137,12 @@ void win_key_callback(GLFWwindow* window, int key, int scancode, int action, int
 			event.key_repeat_event.key = key;
 			break;
 	}
+
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print("np_window: key event: key %i",event.key_repeat_event.key);
+	#endif
+
 	// call event
 	call_event(window, event);
 }
@@ -143,6 +164,12 @@ void win_cursor_position_callback(GLFWwindow* window, double xpos, double ypos) 
 		event.mouse_move_event.xpos = xpos * 2.0 / (double)np_window_get_width(win_instance) - 1.0;
 		event.mouse_move_event.ypos = (ypos * -2.0 / (double)np_window_get_height(win_instance) + 1.0) * (1.0 / aspect);
 	}
+
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print("np_window: mouse move event: xpos %lf, ypos %lf", event.mouse_move_event.xpos, event.mouse_move_event.ypos);
+	#endif
+
 	// call event
 	call_event(window, event);
 }
@@ -154,6 +181,12 @@ void win_mouse_button_callback(GLFWwindow* window, int button, int action, int m
 	event.mouse_button_event.button = button;
 	event.mouse_button_event.action = action;
 	event.mouse_button_event.mods = mods;
+
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print("np_window: mouse button event: button %i, action %i, mods %i", event.mouse_button_event.button, event.mouse_button_event.action, event.mouse_button_event.mods);
+	#endif
+
 	// call event
 	call_event(window, event);
 }
@@ -164,6 +197,12 @@ void win_scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
 	event.type = NP_MOUSE_SCROLL_EVENT;
 	event.mouse_scroll_event.xoffset = xoffset;
 	event.mouse_scroll_event.yoffset = yoffset;
+
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print("np_window: mouse scroll event: xoffset %lf, yoffset %lf", event.mouse_scroll_event.xoffset, event.mouse_scroll_event.yoffset);
+	#endif
+
 	// call event
 	call_event(window, event);
 }
@@ -174,6 +213,12 @@ void win_win_close_callback(GLFWwindow* window) {
 	// set event data
 	np_event event;
 	event.type = NP_WINDOW_CLOSE_EVENT;
+
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print("np_window: close event:");
+	#endif
+
 	// call event
 	call_event(window, event);
 }
@@ -187,26 +232,41 @@ void win_win_size_callback(GLFWwindow* window, int width, int height) {
 	// set window size
 	np_window* win_instance = (np_window*)glfwGetWindowUserPointer(window);
 
-	// keep aspect
-	float aspect = (float)width / (float)height;
-	float og_aspect = 4.0f / 3.0f;
-	if (aspect > 1.0f / og_aspect) {
-		np_debug_print("w %i, h %i", (int)((float)height * (og_aspect)), height);
-		win_instance->width = (int)((float)height * (og_aspect));
-		win_instance->height = height;
-	} else {
-		np_debug_print("w %i, h %i", width, (int)((float)width * og_aspect));
-		win_instance->width = width;
-		win_instance->height = (int)((float)width * og_aspect);
+	switch (win_instance->mode)
+	{
+	
+		// strech
+		case NP_WINDOW_MODE_STRETCH:
+			win_instance->width = width;
+			win_instance->height = height;
+			// set viewport size
+			glViewport(0, 0, width, height);
+			break;
+		
+		// NP_WINDOW_MODE_KEEP
+		// keep aspect ratio
+		default:
+			float aspect = (float)width / (float)height;
+			//float og_aspect = 4.0f / 3.0f;
+			if (aspect > 1.0f / win_instance->aspect_ratio) {
+				win_instance->width = (int)((float)height * (win_instance->aspect_ratio));
+				win_instance->height = height;
+			} else {
+				win_instance->width = width;
+				win_instance->height = (int)((float)width * win_instance->aspect_ratio);
+			}
+			glViewport((width - win_instance->width) / 2, (height - win_instance->height) / 2, win_instance->width, win_instance->height);
+			break;
 	}
-	glViewport((width - win_instance->width) / 2, (height - win_instance->height) / 2, win_instance->width, win_instance->height);
 
-	//win_instance->width = width;
-	//win_instance->height = height;
-	// set viewport size
-	//glViewport(0, 0, width, height);
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print("np_window: resize event: width %i, height %i", win_instance->width, win_instance->height);
+	#endif
+
 	// call event
 	call_event(window, event);
+	
 }
 
 void win_win_pos_callback(GLFWwindow* window, int xpos, int ypos) {
@@ -215,6 +275,12 @@ void win_win_pos_callback(GLFWwindow* window, int xpos, int ypos) {
 	event.type = NP_WINDOW_MOVE_EVENT;
 	event.window_move_event.xpos = xpos;
 	event.window_move_event.ypos = ypos;
+
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print("np_window: move event: xpos %i, ypos %i", event.window_move_event.xpos, event.window_move_event.ypos);
+	#endif
+
 	// call event
 	call_event(window, event);
 }
@@ -239,5 +305,10 @@ void init_window_callback(GLFWwindow* window_instance) {
 }
 
 void default_event_callback(np_event event, void* data) {
-	np_debug_print_yellow("window event callback empty!");
+	// nic se v callbacku neděje.
+
+	// debug
+	#ifdef NP_WINDOW_DEBUG
+	np_debug_print_yellow("np_window: window event callback empty!");
+	#endif
 }

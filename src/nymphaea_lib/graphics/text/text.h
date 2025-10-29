@@ -30,6 +30,11 @@ typedef struct np_text {
     GLfloat height;
 
     size_t lines;
+
+    // přidat text highlight
+    // outline?
+    // https://gamedev.stackexchange.com/questions/46490/font-outline-in-opengl-ftgl
+
 } np_text;
 
 // create text instance.
@@ -83,15 +88,18 @@ size_t np_text_get_index_by_position_clamp(np_text* text, float x, float y);
 // TODO:
 // přidat funkce které upraví jenom usek textu
 // přidat také funkci která upraví usek textu na jiný font? nebo iný mesh??
-
+//
+// přidat higlight sem!!!
 
 /*
-* Změny
-* [...]
+* Změny:
+*
+* [...] hodně změn
 * [31.05.2025] uprava komentářů
 * [13.06.2025] při tvorbě textu je content textu allocován kdyby originální kontent byl deallocován. bezpečné.
 * - začištění kodu
 *
-**/
+*
+*/
 
 #endif NP_TEXT_H

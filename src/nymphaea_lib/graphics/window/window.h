@@ -4,6 +4,17 @@
 #include"nymphaea_lib/graphics/renderer/renderer.h"
 #include"event/event.h"
 
+// #define NP_WINDOW_DEBUG
+
+// window modes
+enum np_window_modes {
+    // keep aspect ratio
+    // default widnow mode
+    NP_WINDOW_MODE_KEEP = 0,
+    // strech to fill whole window
+    NP_WINDOW_MODE_STRETCH
+} np_window_modes;
+
 // event callback
 typedef void(*np_event_callback)(np_event, void*);
 
@@ -17,6 +28,10 @@ typedef struct np_window {
     // size of window
     int width;
     int height;
+    // aspect ratio of window, will be kept if window mode is set to NP_WINDOW_MODE_KEEP
+    float aspect_ratio;
+    // widnow mode
+    enum np_window_modes mode;
     // program data pointer used in 'event_callback'
     void* program_data;
     // function pointer of functionction called on event
@@ -25,18 +40,24 @@ typedef struct np_window {
 
 // Create a window
 void np_window_create(np_window* window, const void* program_data, int width, int height, const char* title);
+
 // Close a window
 void np_window_delete(np_window* window);
+
 // update window buffers & poll events
 // this shoud be the last function called in the main loop since it will display the new buffer on the screen.
 void np_window_update(np_window* window);
+
 // clear window buffer with color
 void np_window_set_clear_color(float r, float g, float b, float a);
+
 // clear window buffers !!!
 void np_window_clear_buffers();
+
 // close window
 // changes the winow 'shoudClose' state to true.
 void np_window_close(np_window* window);
+
 // bind window callback.
 // so when a window recieves an event the 'event_callback' function will be called.
 // callback function (np_event event, void* data).
@@ -46,26 +67,33 @@ void np_window_close(np_window* window);
 // - np_window* window -> window instance
 // - np_event_callback event_callback -> event callback function pointer.
 void np_window_bind_event_callback(np_window* window, np_event_callback event_callback);
+
 // enable or disable vsync.
 // #### Parameters
 // bool enabled -> state of vsync
 void np_window_set_vsync(bool enabled);
+
 // get window width (in pixels)
 // #### Parameters
 // np_window* window -> window instance
 int np_window_get_width(np_window* window);
+
 // get window height (in pixels)
 // #### Parameters
 // np_window* window -> window instance
 int np_window_get_height(np_window* window);
+
 // get GLFW window pointer
 // #### Parameters
 // np_window* window -> window instance
 GLFWwindow* np_window_get_glfw_window(np_window* window);
 
-//void np_window_set_cursor_position
+// set window mode
+// #### Parameters
+// np_window* window -> window instance
+// enum np_widnow_modes mode -> window mode
+void np_widnow_set_mode(np_window* window, enum np_widnow_modes mode);
 
-// Key states vlastní file? (ANO)
 
 // [01.06.2025] připojit framebuffer?
 // - pro bars a pro filtry
@@ -83,9 +111,8 @@ GLFWwindow* np_window_get_glfw_window(np_window* window);
 * - Možná zařadit window.h do kategorie graphics/?
 * [31.05.2025] přidáno np_window_get_glfw_window()
 * [12.06.2025] přidána funkce keep aspekt při změne velikosti okna.
-*
+* [25.10.2025] přidány debug funkce, widnow modes a aspect ratio.
 *
 */
-
 
 #endif NP_WINDOW_H

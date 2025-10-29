@@ -45,3 +45,11 @@ char* np_file_load_string(FILE* file) {
     // return
     return file_data;
 }
+
+void np_get_work_directory(char* buffer, size_t buffer_size) {
+    np_assert(getcwd(buffer, buffer_size) != NULL, "getcwd error");
+}
+
+void np_get_parent_directory(char* buffer, size_t buffer_size, const char* filename) {
+    _splitpath_s(filename, NULL, 0, buffer, buffer_size, NULL, 0, NULL, 0);  
+}

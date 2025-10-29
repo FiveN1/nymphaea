@@ -13,7 +13,7 @@
 */
 typedef struct np_text_2d {
     np_text text;
-    np_transform_2d transform;
+    np_tr2 transform;
 } np_text_2d;
 
 // create 2D text.
@@ -23,7 +23,7 @@ void np_text_2d_delete(np_text_2d* text_2d);
 
 np_text* np_text_2d_get_text(np_text_2d* text_2d);
 
-np_transform_2d* np_text_2d_get_transform(np_text_2d* text_2d);
+np_tr2* np_text_2d_get_transform(np_text_2d* text_2d);
 
 
 

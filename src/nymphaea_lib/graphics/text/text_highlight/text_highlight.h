@@ -22,7 +22,7 @@
 */
 typedef struct np_text_highlight {
     np_mesh* mesh;
-    np_transform_2d transform;
+    np_tr2 transform;
     // mesh verticies
     np_array vertices;
     np_array indices;

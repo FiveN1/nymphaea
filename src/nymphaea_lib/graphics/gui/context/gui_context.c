@@ -45,12 +45,12 @@ void np_gui_create(np_gui_context* gui_context) {
     // load font
     np_gui_resources_set_font_proggy_clean(&gui_context->default_font);
     // load shaders
-    np_gui_resources_set_text_shader(&gui_context->default_text_shader);
-    np_gui_resources_set_color_shader(&gui_context->default_color_shader);
+    //np_gui_resources_set_text_shader(&gui_context->default_text_shader);
+    //np_gui_resources_set_color_shader(&gui_context->default_color_shader);
 
     //np_shader_create_source("", "", "");
 
-    np_gui_resources_set_text_shader2(&gui_context->default_text_shader2);
+    np_gui_resources_set_text_shader(&gui_context->default_text_shader);
 
     // create view camera for gui
     np_camera_2d_create(&gui_context->camera);

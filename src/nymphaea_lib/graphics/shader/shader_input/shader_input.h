@@ -7,6 +7,11 @@
 
 #include"../shader_maker/shader_maker.h"
 
+// TODO:
+// přidat možnost přidání vlastních uniforem.
+// bude to lepší než spoléhat na to že se vše načte správně...
+// + ještě jednodušší bude mít layout.
+
 // #define NP_SHADER_INPUT_DEBUG
 
 // maximální delka názvu uniformy
@@ -27,6 +32,7 @@ enum np_uniform_type {
     NP_UNIFORM_MAT3,
     NP_UNIFORM_MAT4,
     NP_UNIFORM_SAMPLER2D,
+    NP_UNIFORM_SAMPLER2D_DSA, // indev
     NP_UNIFORM_TYPE_AMOUNT
 } np_uniform_type;
 
@@ -43,20 +49,21 @@ typedef struct np_shader_input {
     np_array uniform_sections;
 } np_shader_input;
 
-// získeá všehny uniformy / vstupy a uloží je v shader_input.
+//
 // #### Parametry:
 // - np_shader_input* shader_input -> instance shader inputu do kterého se zapíšou data o vstupu shaderu.
 // - np_shader_program shader_program -> shader_program ze kterého chceme získat data.
-void np_shader_input_create(np_shader_input* shader_input, np_shader_program shader_program);
+void np_shader_input_create(np_shader_input* shader_input);
+
 // uvolí data o vstupech v shaderu.
 // POZOR: předem se musí také uvolnit všechna np_shader_data která závií na tomto vstupu!
 // #### Parametry:
 // - - np_shader_input* shader_input -> instance shader inputu.
 void np_shader_input_delete(np_shader_input* shader_input);
-// vytiskne všechny uniformy a jejich sekce do konzole.
-// #### Parametry:
-// - - np_shader_input* shader_input -> instance shader inputu.
-void np_shader_input_print(np_shader_input* shader_input);
+
+// přidá uniformu do pole.
+// uniforma se nesmí opakovat a musí pocházet z stejneho shaderu.
+void np_shader_input_add_uniform(np_shader_input* shader_input, enum np_uniform_type type, const char* name);
 
 /*
 * Design sytému
@@ -121,6 +128,11 @@ void np_shader_input_print(np_shader_input* shader_input);
 * [25.06.2025] funkční jak jsem chtěl. teď zbývá začistit kod aby byl snadno čitelný.
 * [26.06.2025] přidány poznámky. STABILNÍ
 *
+* [29.10.2025] 
+* odstranění automatického načítání uniforem. teď je to vlastní funkce.
+* tímto je možné přidávat třeba vstupy na layout nebo tak.
+* teď je také možné bindovat i dsa_objekty, tohle byl ten hlavní problém.
+* možnost automatického načítání uniforem nakonec uplně odstraněna.
 *
 */
 

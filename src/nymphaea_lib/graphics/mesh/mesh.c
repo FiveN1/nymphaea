@@ -5,12 +5,6 @@ void np_mesh_create(np_mesh* mesh, np_mesh_data mesh_data) {
     np_mesh_create_advanced(mesh, mesh_data, GL_STATIC_DRAW, GL_STATIC_DRAW);
 }
 
-void np_mesh_create_procedural(np_mesh* mesh, np_mesh_data mesh_data) {
-    np_mesh_create(mesh, mesh_data);
-    // delete generated mesh_data
-    np_mesh_data_free(mesh_data);
-}
-
 void np_mesh_create_advanced(np_mesh* mesh, np_mesh_data mesh_data, GLenum vertex_usage, GLenum element_usage) {
     // create vao (this has to be first)
     np_vao_create(&mesh->vao);
