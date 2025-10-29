@@ -1,7 +1,11 @@
-# Hello world demo
-This demo creates a window with the text "Hello World!" in the middle.
+# Mandelbrot set demo
+This demo creates lets you explore the mandelbrot set fractal.
+It demonstrates the use of compute shaders and buffer objects in Nymphaea.
 
-<img src="https://github.com/FiveN1/nymphaea/blob/main/demos/hello_world_demo/res/hello_world_example_result.png" alt="Hello World example result" width="512"/>
+<img src="https://github.com/FiveN1/nymphaea/blob/indev/demos/Mandelbrot_set_demo/res/img/screenshot1.png" alt="Mandelbrot set demo image" width="512"/>
+
+## Controls
+use WSAD for movement and QE for zoom.
 
 ## How to run?
 Run `build.bat` and type `compile` or `c` to compile the program and run it.
@@ -11,6 +15,3 @@ Run `build.bat` and type `compile` or `c` to compile the program and run it.
 > [!TIP]
 > Use any of the premake commands *(if you type `help` you will get a list of them)* to generate the project files for any editor/compiler you like!
 > Then you can build the project from the generated project files.
-
-## Download
-Download the executable [here!](https://github.com/FiveN1/nymphaea/releases/tag/hello_world_demo_v1.0)
