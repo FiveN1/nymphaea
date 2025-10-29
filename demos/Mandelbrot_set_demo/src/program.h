@@ -28,6 +28,7 @@ typedef struct program_data {
     np_window window;
 
     np_shader texture_shader;
+    np_shader color_shader;
 
     // frame shader
     // použít np_rect

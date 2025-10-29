@@ -1,15 +1,11 @@
 #version 460 core
 
-in vec2 UV;
+in vec2 uv;
 
-out vec4 outColor;
+out vec4 out_color;
 
 uniform sampler2D tex;
 
 void main() {
-	//outColor = texture(tex, UV);
-
-	outColor = vec4(texture(tex, UV).rgb, 1.0f);
-	
-	//outColor = vec4(1.0f, 0.0f, 0.0f, 1.0f);
+	out_color = vec4(texture(tex, uv).rgb, 1.0f);
 }
