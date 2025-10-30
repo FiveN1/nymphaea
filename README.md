@@ -4,7 +4,7 @@ Nymphaea is C a library made for creating programmable art.
 
 Use Nymphaea as you like!
 
-<img style="float: right;" src="https://github.com/FiveN1/nymphaea/blob/main/res/lion_demo_screenshot1.png" alt="Nymphaea 3D screenshot" width="512"/>
+<img style="float: right;" src="https://github.com/FiveN1/nymphaea/blob/main/res/nymphaea_project_screenshots1.png" alt="Nymphaea 3D screenshot" width="512"/>
 
 ## 🌸About
 - Nymphaea makes it easy to write C programs.
