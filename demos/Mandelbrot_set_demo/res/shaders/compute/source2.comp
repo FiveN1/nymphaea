@@ -79,7 +79,8 @@ void main() {
 	double greyscale = 0.0;
 	vec3 color = vec3(0.0f, 0.0f, 0.0f);
 
-	a = map(pixCord.x, 0, data.resolution_x, camera_position_x - camera_zoom * 0.5 * (4.0/3.0), camera_position_x + camera_zoom * 0.5 * (4.0/3.0));
+	float aspect = float(data.resolution_x) / float(data.resolution_y);
+	a = map(pixCord.x, 0, data.resolution_x, camera_position_x - camera_zoom * 0.5 * aspect, camera_position_x + camera_zoom * 0.5 * aspect);
 	b = map(pixCord.y, 0, data.resolution_y, camera_position_y - camera_zoom * 0.5, camera_position_y + camera_zoom * 0.5);
 	ca = a;
 	cb = b;
@@ -115,7 +116,7 @@ void main() {
 	// Vykalkuluje barvu danneho pixelu podle vysledku fraktalu
 	if (n != max_iter) {
 		greyscale = sqrt(double(n) / double(max_iter)) / 1.0;
-
+		//color = vec3(greyscale, greyscale, greyscale);
 		color = linear_color_gradient(greyscale);
 	} 
 

@@ -7,17 +7,20 @@
 //
 // frame shader, that shades the whole viewport with a texture.
 //
-typedef struct mbs_frame {
+typedef struct fractal_viewport {
     np_dsa_texture_2d texture;    
-    np_tr2 transform;
+    int texture_width;
+    int texture_height;
+
     np_mesh* mesh;
+} fractal_viewport;
 
-} mbs_frame;
 
+void fractal_viewport_create(fractal_viewport* viewport, np_mia_registry* mesh_registry, np_shader* texture_shader, int resolution_x, int resolution_y);
 
-// pass 2d_scene?
+void fractal_viewport_delete(fractal_viewport* viewport);
 
-void mbs_frame_create(mbs_frame* frame, np_mia_registry* mesh_registry, np_shader* texture_shader, int resolution_x, int resolution_y);
+void fractal_viewport_resize(fractal_viewport* viewport, int resolution_x, int resolution_y);
 
 // TODO:
 // spravit texture system !! (HOTOVO :))

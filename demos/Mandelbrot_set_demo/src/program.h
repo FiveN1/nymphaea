@@ -7,54 +7,31 @@
 
 #include<nymphaea_lib/graphics/graphics.h>
 
-#include"camera/camera.h"
-#include"cs_data/cs_data.h"
-#include"frame/frame.h"
+#include"fractal/fractal.h"
+#include"fractal/camera/camera.h"
+#include"viewport/viewport.h"
 #include"ui/ui.h"
-#include"color_scheme/color_scheme.h"
 
-#include"nymphaea_lib/graphics/text/text_mesh/text_mesh.h"
 
-// nějakej scene systém?
-// - 2D scene system.
-// 
 
 // data of this demo program
 typedef struct program_data {
-
+    // mia
     np_mia mia;
     np_mia_registry* mesh_registry;
-    //np_mia_registry* dsa_texture_2d_registry;
-
+    // window
     bool is_running;
     np_window window;
-
+    // texture shader for viewport
     np_shader texture_shader;
-    np_shader color_shader;
-
-    // frame shader
-    // použít np_rect
-    // np_rect jde abstraktnout na np_mesh který je v gui s shaderem
-    // jak by se to jmenovalo?
-    // np_gui_shape?
-    mbs_frame frame;
-
+    // viewport that fills the whole screen
+    fractal_viewport viewport;
     // fractal view camera
-    mbs_camera camera;
-
-    // compute shader data
-    int resolution_x;
-    int resolution_y;
-    np_compute_program compute_program;
-    mbs_cs_data cs_data;
-    np_ssbo cs_ssbo;
-
-
-    np_ssbo color_ssbo;
-
+    fractal_camera fractal_camera_instance;
+    // fractal calc system
+    fractal fractal_instance;
     // gui
     mbs_ui ui;
-
 } program_data;
 
 // set program data
@@ -77,5 +54,6 @@ void program_on_event(np_event event, void* data);
 *
 *
 */
+
 
 #endif MANDELBROT_SET_DEMO_PROGRAM_H

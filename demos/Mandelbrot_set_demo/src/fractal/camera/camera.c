@@ -1,17 +1,13 @@
 #include"camera.h"
 
-void mbs_camera_create(mbs_camera* camera) {
+void fractal_camera_create(fractal_camera* camera) {
     // set data
     camera->position_x = 0.0f;
     camera->position_y = 0.0f;
     camera->zoom = 5.0f;
-
-    // create ssbo object.
-    // will be updated every frame so we use GL_STREAM_DRAW
-    //np_ssbo_create(&camera->ssbo, sizeof(mbs_camera_data), &camera->data, GL_STREAM_DRAW, ssbo_layout_index);
 }
 
-void mbs_camera_update(mbs_camera* camera, np_window* window, double delta_time) {
+void fractal_camera_update(fractal_camera* camera, np_window* window, double delta_time) {
     float speed = 0.001f;
     float zoom_speed = 0.001f;
 
@@ -37,6 +33,6 @@ void mbs_camera_update(mbs_camera* camera, np_window* window, double delta_time)
     }
 }
 
-void mbs_camera_on_event(mbs_camera* camera, np_event event, np_window* window) {
+void fractal_camera_on_event(fractal_camera* camera, np_event event, np_window* window) {
     
 }

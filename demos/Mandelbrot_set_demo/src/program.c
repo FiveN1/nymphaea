@@ -21,50 +21,14 @@ void program_create(program_data* program) {
     np_shader_create_file(&program->texture_shader, "res/shaders/texture_shader/source.vert", "", "res/shaders/texture_shader/source.frag");
     np_shader_input_add_uniform(&program->texture_shader.shader_input, NP_UNIFORM_SAMPLER2D_DSA, "tex");
 
-    //
+    fractal_camera_create(&program->fractal_camera_instance);
+    fractal_create(&program->fractal_instance, &program->fractal_camera_instance, np_window_get_width(&program->window), np_window_get_height(&program->window));
+
     // GUI
-    //
     mbs_ui_create(&program->ui);
-    
-    //
-    // Fractal
-    //
 
-    program->resolution_x = np_window_get_width(&program->window);
-    program->resolution_y = np_window_get_height(&program->window);
-
-    // frame
-    mbs_frame_create(&program->frame, program->mesh_registry, &program->texture_shader, program->resolution_x, program->resolution_y);
-    // compute 
-    np_compute_program_load(&program->compute_program, "res/shaders/compute/source2.comp");
-
-    mbs_camera_create(&program->camera, 1);    
-
-    mbs_cs_data_create(&program->cs_data, &program->camera, program->resolution_x, program->resolution_y, 100);
-    np_ssbo_create(&program->cs_ssbo, sizeof(mbs_cs_data), &program->cs_data, GL_STREAM_DRAW, 1);
-
-    // lajolla
-    color_rgb colors[] = {
-		hex_to_rgb(0x1f1e0f),  
-		hex_to_rgb(0x332312),  
-		hex_to_rgb(0x5b2f22),  
-        hex_to_rgb(0x91403c), 
-        hex_to_rgb(0xc94e4a), 
-        hex_to_rgb(0xe1714d),
-        hex_to_rgb(0xe8914f),
-        hex_to_rgb(0xefb553),
-        hex_to_rgb(0xf7dd79),
-        hex_to_rgb(0xfcf9cb)
-	};
-    int color_count = (int)(sizeof(colors) / sizeof(color_rgb));
-    
-    // send data to gpu
-    size_t copy_buffer_size = sizeof(color_count) + sizeof(colors);
-    void* copy_buffer = malloc(copy_buffer_size);
-    memcpy_s(copy_buffer, copy_buffer_size, &color_count, sizeof(color_count));
-    memcpy_s((unsigned char*)copy_buffer + sizeof(color_count), copy_buffer_size - sizeof(color_count), &colors, sizeof(colors));
-    np_ssbo_create(&program->color_ssbo, copy_buffer_size, copy_buffer, GL_STATIC_DRAW, 2);
-    free(copy_buffer);
+    // viewport
+    fractal_viewport_create(&program->viewport, program->mesh_registry, &program->texture_shader, np_window_get_width(&program->window), np_window_get_height(&program->window));
 
 }
 
@@ -82,21 +46,14 @@ void program_run(program_data* program) {
 
         double delta_time = np_delta_time_get(&prev_time);
 
-        // update camera
-        mbs_camera_update(&program->camera, &program->window, delta_time);
-
-        // update data
-        mbs_cs_data_set_camera_data(&program->cs_data, &program->camera);
-        np_ssbo_set_data(program->cs_ssbo, &program->cs_data, 0, sizeof(mbs_cs_data));
-
-        // calculate fractal
-        np_dsa_texture_2d_bind_layout_unit(program->frame.texture, 0, GL_WRITE_ONLY, GL_RGBA32F); // stačí jen jednou?
-        np_compute_program_use(program->compute_program, ceil(program->resolution_x / 8), ceil(program->resolution_y / 4), 1);
-
-        // draw frame to screen
-        //np_mesh_call_draw(&program->frame.mesh);
+        // update and render fractal
+        fractal_camera_update(&program->fractal_camera_instance, &program->window, delta_time);
+        fractal_update_camera_data(&program->fractal_instance, &program->fractal_camera_instance);
+        fractal_render(&program->fractal_instance, program->viewport.texture, program->viewport.texture_width, program->viewport.texture_height);
         
+        // draw all meshes
         np_mia_sys_mesh_draw_all(program->mesh_registry);
+
         //
         // GUI
         //
@@ -105,7 +62,7 @@ void program_run(program_data* program) {
         if (time_diffrence > 25.0) { // update every 25ms
             // set camera stats text
             char camera_stats_buffer[256];
-            sprintf_s(camera_stats_buffer, sizeof(camera_stats_buffer), "position xy: (%lf, %lf) zoom: %lf", program->camera.position_x, program->camera.position_y, program->camera.zoom);
+            sprintf_s(camera_stats_buffer, sizeof(camera_stats_buffer), "position xy: (%lf, %lf) zoom: %lf", program->fractal_camera_instance.position_x, program->fractal_camera_instance.position_y, program->fractal_camera_instance.zoom);
             np_text_set(np_gui_text_get_text(program->ui.camera_stats), camera_stats_buffer);
 
             // set program stats text
@@ -114,7 +71,7 @@ void program_run(program_data* program) {
             np_text_set(np_gui_text_get_text(program->ui.program_stats), program_stats_buffer);
             
             char fractal_stats_buffer[256];
-            sprintf_s(fractal_stats_buffer, sizeof(fractal_stats_buffer), "fractal type: Mandelbrot set; max iteration count: %i", program->cs_data.max_iteration_count);
+            sprintf_s(fractal_stats_buffer, sizeof(fractal_stats_buffer), "fractal type: Mandelbrot set; max iteration count: %i", program->fractal_instance.data.max_iteration_count);
             np_text_set(np_gui_text_get_text(program->ui.fractal_stats), fractal_stats_buffer);
             
             time_diffrence = 0.0;
@@ -126,7 +83,6 @@ void program_run(program_data* program) {
         // update window
         np_window_update(&program->window);
     }
-
 }
 
 // free program data
@@ -147,7 +103,9 @@ void program_on_event(np_event event, void* data) {
     program_data* program = (program_data*)data;
 
     if (event.type == NP_WINDOW_RESIZE_EVENT) {
-
+        // update texture
+        //fractal_viewport_resize(&program->viewport, np_window_get_width(&program->window), np_window_get_height(&program->window));
+        //fractal_update_viewport_data(&program->viewport, np_window_get_width(&program->window), np_window_get_height(&program->window));
     }
 
 
