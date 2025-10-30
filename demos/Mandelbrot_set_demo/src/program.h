@@ -21,6 +21,7 @@ typedef struct program_data {
     np_mia_registry* mesh_registry;
     // window
     bool is_running;
+    bool render_gui;
     np_window window;
     // texture shader for viewport
     np_shader texture_shader;

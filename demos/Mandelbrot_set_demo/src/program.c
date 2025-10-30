@@ -8,6 +8,7 @@ void program_create(program_data* program) {
 
     // program will run by default
     program->is_running = true;
+    program->render_gui = true;
 
     // initilize the renderer (GLFW)
     np_renderer_create();
@@ -78,7 +79,7 @@ void program_run(program_data* program) {
         }
         
         // update (draw) GUI
-        np_gui_update(&program->ui.gui_context, &program->window);
+        if (program->render_gui) np_gui_update(&program->ui.gui_context, &program->window);
 
         // update window
         np_window_update(&program->window);

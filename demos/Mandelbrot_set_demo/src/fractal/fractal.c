@@ -5,7 +5,7 @@ void fractal_create(fractal* fractal_instance, fractal_camera* fractal_camera, i
     np_compute_program_load(&fractal_instance->compute_program, "res/shaders/compute/source2.comp");
 
     // general data
-    mbs_cs_data_create(&fractal_instance->data, fractal_camera, view_texture_width, view_texture_height, 100);
+    mbs_cs_data_create(&fractal_instance->data, fractal_camera, view_texture_width, view_texture_height, 200);
     np_ssbo_create(&fractal_instance->data_ssbo, sizeof(mbs_cs_data), &fractal_instance->data, GL_STREAM_DRAW, 1);
     
     // color scheme data
