@@ -29,7 +29,7 @@ void np_text_highlight_create(np_text_highlight* text_highlight, np_mesh* empty_
     np_array_create(&text_highlight->vertices, 0, sizeof(GLfloat));
     np_array_create(&text_highlight->indices, 0, sizeof(GLuint));
     // create transform
-    np_transform_2d_create(&text_highlight->transform);
+    np_tr2_create(&text_highlight->transform);
 }
 
 void np_text_highlight_set(np_text_highlight* text_highlight, np_text* text, size_t begin, size_t end) {

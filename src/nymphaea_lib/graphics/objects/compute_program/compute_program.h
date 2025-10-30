@@ -28,5 +28,12 @@ void np_compute_program_use(np_compute_program compute_program, GLuint num_group
 
 //void np_compute_program_get_max_work_groups();
 
+/*
+* Změny
+*
+* [...]
+* [25.10.2025] přidán error log
+*
+*/
 
 #endif NP_COMPUTE_PROGRAM_H

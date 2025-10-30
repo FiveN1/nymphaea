@@ -18,13 +18,13 @@
 // Text used in GUI applications.
 typedef struct np_gui_text {
     np_text text;
-    np_transform_2d transform;
+    np_tr2 transform;
 
     // + highlight
     // + edit cursor
     // + flags
     
-    np_text_highlight highlight;
+    //np_text_highlight highlight; // ZBAVIT SE !!
 
 } np_gui_text;
 
@@ -40,10 +40,12 @@ void np_gui_text_delete(np_gui_text* gui_text);
 np_text* np_gui_text_get_text(np_gui_text* gui_text);
 // get transform of gui text.
 // - np_gui_text* gui_text -> gui text instance.
-np_transform_2d* np_gui_text_get_transform(np_gui_text* gui_text);
+np_tr2* np_gui_text_get_transform(np_gui_text* gui_text);
+
+void np_gui_text_set_font(np_gui_text* gui_text, np_font* font);
 
 
-void np_gui_text_on_event(np_gui_text* gui_text, np_gui_context* gui_context, np_event event, np_window* window);
+//void np_gui_text_on_event(np_gui_text* gui_text, np_gui_context* gui_context, np_event event, np_window* window);
 
 
 

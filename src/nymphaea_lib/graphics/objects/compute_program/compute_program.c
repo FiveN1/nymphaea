@@ -12,7 +12,23 @@ void np_compute_program_create(np_compute_program* compute_program, const char* 
     glCompileShader(compute_shader);
     // compilation status check
     glGetShaderiv(compute_shader, GL_COMPILE_STATUS, &success);
-    np_assert(success, "COMPUTE SHADER compilation error!");
+    if (success == GL_FALSE) {
+        // get message length
+        GLint max_log_length = 0;
+	    glGetShaderiv(compute_shader, GL_INFO_LOG_LENGTH, &max_log_length);
+        // allocate message
+        char* error_log = (char*)malloc(sizeof(char) * max_log_length);
+        np_assert(error_log != NULL, "np_compute_program: malloc error");
+        // get message
+        glGetShaderInfoLog(compute_shader, max_log_length, &max_log_length, &error_log[0]);
+        // delete shader
+        glDeleteShader(compute_shader);
+        // print message
+        np_print_red("np_compute_program: compilation error!");
+        np_print_red("%s", error_log);
+        free(error_log); // free message
+        np_assert(false, "");
+    }
     // <SHADER PROGRAM> //
     // Vytvoří Shader program
     *compute_program = glCreateProgram();

@@ -196,4 +196,6 @@ void np_model_resources_create_model_shader(np_shader* shader) {
     "}";
 
     np_shader_create_source(shader, model_shader_vert, model_shader_geom, model_shader_frag);
+    np_shader_input_add_uniform(&shader->shader_input, NP_UNIFORM_MAT4, "proj_matrix");
+    np_shader_input_add_uniform(&shader->shader_input, NP_UNIFORM_SAMPLER2D, "diffuse_0");
 }

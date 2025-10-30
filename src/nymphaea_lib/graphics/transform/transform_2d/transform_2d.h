@@ -12,35 +12,48 @@
 * Used for transforming 2D verticies.
 * Any vertex or collection of 2D verticies can by moved, rotated or scaled by this transform.
 *
-* ## Related Functions
-* - np_transform_2d_create
-* - np_transform_2d_create_advanced
-* - np_transform_2d_get
-* - np_transform_2d_set_position
-* - np_transform_2d_set_orientation
-* - np_transform_2d_set_scale
 */
-typedef struct np_transform_2d {
-    // transformation variables by wich the matrix is transformed
-    vec2 position;
-    vec2 orientation;
-    vec2 scale;
+typedef struct np_tr2 {
     // transformation matrix. shoud not be accessed from this struct directly.
-    mat3 matrix;
-} np_transform_2d;
+    mat4 matrix;
+    // transform
+    mat4 transform_matrix;
+    vec3 position;
+    // rotation
+    mat4 rotation_matrix;
+    float rotation; // nefunkční
+    // scale
+    mat4 scale_matrix;
+    vec3 scale;
+} np_tr2;
 
 // create 2D transform
-void np_transform_2d_create(np_transform_2d* transform_2d);
+void np_tr2_create(np_tr2* tr2);
 // create 2D transform but with all values set in this function
-void np_transform_2d_create_advanced(np_transform_2d* transform_2d, vec2 position, vec2 orientation, vec2 scale);
+void np_tr2_create_advanced(np_tr2* tr2, vec2 position, vec2 rotation, vec2 scale);
 // get 2D transformation matrix
 // NOTE: when using this matrix in a shader to transform 2D coordinates, it has to be multiplied with vec3() with the last 'z' coordinate equal to 1.0
-mat3* np_transform_2d_get(np_transform_2d* transform_2d);
+mat3* np_tr2_get(np_tr2* tr2);
 // set 2D transform position
-void np_transform_2d_set_position(np_transform_2d* transform_2d, vec2 position);
+void np_tr2_set_position(np_tr2* tr2, vec2 position);
 // set 2D transform orientation
-void np_transform_2d_set_orientation(np_transform_2d* transform_2d, vec2 orientation);
+void np_tr2_set_rotation(np_tr2* tr2, float rotation);
 // set 2D transform scale
-void np_transform_2d_set_scale(np_transform_2d* transform_2d, vec2 scale);
+void np_tr2_set_scale(np_tr2* tr2, vec2 scale);
+
+// TODO:
+// dát jinam než do graphics/
+
+/*
+* Změny:
+*
+* [...]
+* 
+* [29.10.2025]
+* přejmenováno na np_tr2 pro jednoduchost
+* předělány všechny funkce, protože nebyly implementovány a nechápu jak mohli předtím fungovat :D
+* teď je to všechno rozděleno do několika matrixů.
+*
+*/
 
 #endif NP_TRANSFORM_2D_H

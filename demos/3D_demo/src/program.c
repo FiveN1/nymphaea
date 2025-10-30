@@ -22,7 +22,7 @@ void program_create(program_data* program) {
 
     // create gui text at top left corner
     program->fps_text = np_gui_text_create(&program->gui, "delta time: 0ms, fps: 0");
-    np_transform_2d_set_position(np_gui_text_get_transform(program->fps_text), (vec2){-(4.0f / 3.0f), 1.0f});
+    np_tr2_set_position(np_gui_text_get_transform(program->fps_text), (vec2){-(4.0f / 3.0f), 1.0f});
 
     // scene
     np_scene_create(&program->scene);

@@ -12,6 +12,13 @@
 // !! UNDER DEVELOPEMENT !!
 //
 
+// co je scéna?
+// scéna je prostředí které na sebe navazuje (a je renderováno přes jednu kameru?)
+// může být 3d a 2d
+
+
+
+
 // #### Scene
 // v scene se nachází componenty které jsou závislé na scéně.
 //

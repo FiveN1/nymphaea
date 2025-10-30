@@ -7,12 +7,39 @@
 
 #include<nymphaea_lib/graphics/mesh/mesh.h>
 
-// #### Shader
-// abstrakce od manualního nastavování uniforem.
-// jednoduše získá všechny uniformy z source kodu a automaticky je updatuje.
-//
-// shader se potom nabinduje na mesh pomocí 'np_mesh_set_shader()'.
-// funkce pak vrátí jenom data která je třeba nastavit pro automatické posílání dat do shaderu.
+/*
+* #### Shader
+*
+* abstrakce od manualního nastavování uniforem.
+* jednoduše získá všechny uniformy z source kodu a automaticky je updatuje.
+*
+* shader se potom nabinduje na mesh pomocí 'np_mesh_set_shader()'.
+* funkce pak vrátí jenom data která je třeba nastavit pro automatické posílání dat do shaderu.
+*
+* Je to prakticky material systém, kde toto je jakoby material_template a shader data jsou ten materiál meshe.
+*
+* ## Jak funguje?
+*
+* Shader funguje jako šablona, na kterou odkazují shader data.
+* 
+* Shader skládá z dvou hlavních částí:
+* #### shader_program
+* OpenGL objekt který je spojený s programem na GPU.
+*
+* #### shader_input
+* pole vstupů/uniform shaderu, které je třeba bindovat každý frame.
+*
+*             [np_shader]               - instance np_shader.
+*                  A
+*                  |
+*     (reference z np_shader_data na 
+*      shader_input v np_shader)
+*                  |
+*        +---------+-------+
+*        |                 |
+* [np_shader_data], [np_shader_data]    - shader data (unložená v draw data meshe)
+*
+*/
 typedef struct np_shader {
     np_shader_program shader_program;
     np_shader_input shader_input;
@@ -47,16 +74,17 @@ void np_shader_delete(np_shader* shader);
 // - np_shader* shader -> instance shaderu užita k shadovaní meshe.
 np_shader_data* np_mesh_set_shader(np_mesh* mesh, np_shader* shader);
 
+
 /*
-* ## Změny
+* Změny:
 *
-* #### 24.06.2025
+* [24.06.2025]
 * vytvořeno pro abstrakci od sraní s shadery
 *
-* #### 25.06.2025
+* [25.06.2025]
 * implementace, plně funkční a snadno použitelné. (snad už finální podoba)
 *
-* #### 26.06.2025
+* [26.06.2025]
 * přidána delete funkce a poznámky. také přidána funkce pro načítání shaderu z source (string). STABILNÍ
 *
 */

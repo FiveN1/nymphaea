@@ -42,6 +42,9 @@ void* np_shader_data_get(np_shader_data* shader_data, char* uniform);
 // draw callback používán pro odesílání uniforem a malování meshe.
 void np_shader_data_draw_callback(np_mesh* mesh, np_shader_program shader_program, void* data);
 
+// změnit np_shader_data_get aby kdyby uniform neexistovala tak ji vytvořila, také tam bude typ uniformy jako input.
+//void* np_shader_data_get(np_shader_data* shader_data, char* uniform, enum np_uniform_type type);
+
 /*
 * Problémy
 * 
@@ -91,6 +94,7 @@ void np_shader_data_draw_callback(np_mesh* mesh, np_shader_program shader_progra
 * [25.06.2025] funkční, rozděleno do funkcí pro snadnou čitelnost a přidáváná podpory dalších uniforem v budoucnu.
 * [26.06.2025] přidány poznámky.
 * [27.06.2025] přidány debug funkce. STABILNÍ
+* [25.10.2025] problém: není možné bindovat DSA textury.
 *
 */
 

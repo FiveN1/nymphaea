@@ -1,15 +1,8 @@
 #include"pch.h"
 #include"font.h"
 
-/*
-* TODO:
-* - add spacing between glyphs in the atlas texture
-*
-* - udělat čistější.
-*/
-
 //
-// private define
+// local define
 //
 
 void np_font_create_from_face(np_font* font, FT_Face face);
@@ -75,7 +68,7 @@ GLfloat np_font_get_row_offset(np_font* font) {
 }
 
 //
-// private implementation
+// local implementation
 //
 
 void np_font_create_from_face(np_font* font, FT_Face face) {
@@ -104,9 +97,9 @@ void np_font_create_from_face(np_font* font, FT_Face face) {
     
     // glyph data retrival
 
-    // TODO: scale all fonts to one UNIVERSAL value
-    // aby všechny texty měli stejnou velikost
-    font->scale = 0.001f;
+    // scale aby všechny fonty byly stejně vysoké, (na šířce nezáleží)
+    float default_font_size = 0.04f; // není určeno
+    font->scale = 1.0f / font->atlas_height * default_font_size;
 
     // create array of glyph data
     np_array_create(&font->glyphs, 128, sizeof(np_glyph));
@@ -143,18 +136,3 @@ void np_font_create_from_face(np_font* font, FT_Face face) {
         glyph_atlas_offset += face->glyph->bitmap.width;
     }
 }
-
-
-// Zdroje:
-// https://stackoverflow.com/questions/68855110/unable-to-upload-bitmaps-from-most-fonts-loaded-by-freetype-to-opengl-as-texture
-// ft unicode : https://stackoverflow.com/questions/60526004/how-to-get-glyph-unicode-using-freetype
-//
-// __NULL_IMPORT_DESCRIPTOR warn: https://www.gamedev.net/forums/topic/645255-building-a-library-with-another-library/
-//
-// Link Error:
-// external error: https://www.gamedev.net/forums/topic/700387-how-do-i-statically-link-freetype-in-vs2017/
-// /MD https://stackoverflow.com/questions/14932262/multi-threaded-dll-md-vs-multi-threaded-mt
-//
-// LIBCMT confilict
-// https://stackoverflow.com/questions/14148933/libcmt-conflicts-with-use-of-other-libs-unresolved-external-symbols
-// - vše musí být v /MD

@@ -2,7 +2,7 @@
 #include"camera_2d.h"
 
 void np_camera_2d_create(np_camera_2d* camera_2d) {
-    np_transform_2d_create(&camera_2d->transform);
+    np_tr2_create(&camera_2d->transform);
     // set zoom to {1.0f, 1.0f}
     glm_vec2_one(camera_2d->zoom);
 }
@@ -18,6 +18,6 @@ mat4* np_camera_2d_get_matrix(np_camera_2d* camera_2d) {
     return &camera_2d->view_matrix;
 }
 
-np_transform_2d* np_camera_2d_get_transform(np_camera_2d* camera_2d) {
+np_tr2* np_camera_2d_get_transform(np_camera_2d* camera_2d) {
     return &camera_2d->transform;
 }

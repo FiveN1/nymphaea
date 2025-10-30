@@ -1,0 +1,96 @@
+#version 460 core
+layout(local_size_x = 8, local_size_y = 4, local_size_z = 1) in;
+layout(rgba32f, binding = 0) uniform image2D screen;
+layout(std430, binding = 1) buffer resolutionSSBO {
+    uint resolution[];
+};
+layout(std430, binding = 2) buffer userSSBO {
+    double user[];
+};
+layout(std430, binding = 3) buffer spectrumSSBO {
+    float colorSpectrum[];
+};
+layout(std430, binding = 4) buffer spectrumSizeSSBO {
+    uint colorSpectrumSize;
+};
+layout(std430, binding = 5) buffer SetSSBO {
+	int setData;
+};
+
+// Map funkce
+double map(double value, double min1, double max1, double min2, double max2) {
+  return min2 + (value - min1) * (max2 - min2) / (max1 - min1);
+}
+
+// Tahle funkce pobbezi paralelne na GPU
+void main() {
+
+	//----------------------------------------
+	// [KALKULACE] - Spocita Fractal
+	//----------------------------------------
+
+	// Pixel Coordinace
+	ivec2 pixCord = ivec2(gl_GlobalInvocationID.xy);
+
+	// user
+	double userX = user[0];
+	double userY = user[1];
+	double userZOOM = user[2];
+	
+	// Iteration
+	double a, b, aa, bb, ca, cb, twoab;
+	int n = 0;
+	int max_iter = int(user[3]);
+
+	// Screen
+	double greyscale = 0.0;
+	vec3 color = vec3(0.0f, 0.0f, 0.0f);
+
+	a = map(pixCord.x, 0, resolution[0], userX - userZOOM * 0.5, userX + userZOOM * 0.5);
+	b = map(pixCord.y, 0, resolution[1], userY - userZOOM * 0.5, userY + userZOOM * 0.5);
+	ca = a;
+	cb = b;
+	if (setData == 1) {
+		// https://en.wikipedia.org/wiki/Julia_set julia set constants
+		ca = user[4];
+		cb = user[5];
+	}
+
+	//----------------------------------------
+	// [FUNCTION] - Funkce fraktalu
+	//----------------------------------------
+
+	// Itteruje do max
+	for (int i = 0; i < max_iter; i++, n++) {
+		aa = a * a;
+		bb = b * b;
+		twoab = 2.0 * a * b;
+		a = aa - bb + ca;
+		b = twoab + cb;
+
+		if (aa * aa + bb * bb > 16) {
+			break;
+		}
+	}
+	
+	// Vykalkuluje barvu danneho pixelu podle vysledku fraktalu
+	if (n != max_iter) {
+		greyscale = sqrt(double(n) / double(max_iter)) / 1.0;
+
+		// GREYSCAE TO COLOR SPECTRUM
+		uint colorsInArr = colorSpectrumSize - 1;
+		float segment = 1.0f / float(colorsInArr);
+		float c = 0.0f;
+		for (int x = 0; x < colorsInArr; x += 1, c += segment) {
+			if (greyscale >= c && greyscale <= c + segment) {
+				float val = float(greyscale) - c;
+				color.x = ((segment - val) / segment * colorSpectrum[x * 3])     + (val / segment * colorSpectrum[x * 3 + 3]);
+				color.y = ((segment - val) / segment * colorSpectrum[x * 3 + 1]) + (val / segment * colorSpectrum[x * 3 + 4]);
+				color.z = ((segment - val) / segment * colorSpectrum[x * 3 + 2]) + (val / segment * colorSpectrum[x * 3 + 5]);
+			}
+		}
+	} 
+
+	// ULozi pixel
+	imageStore(screen, pixCord, vec4(color, 1.0));
+}
