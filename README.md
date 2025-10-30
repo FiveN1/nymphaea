@@ -14,7 +14,7 @@ Use Nymphaea as you like!
 - Most of the comments are in Czech since im from Czechia (sorry!)
 
 ## 🌸Demos
-Check out some of the demos made with Nymphaea [here!](demos/)
+Check out the demos made with Nymphaea [here!](demos/)
 
 ## 🌸Hello World Example
 This simple example will create a window with the text `Hello World!` in the middle.
