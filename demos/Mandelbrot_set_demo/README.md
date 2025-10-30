@@ -1,5 +1,5 @@
 # Mandelbrot set demo
-This demo creates lets you explore the mandelbrot set fractal.
+This demo lets you explore the mandelbrot set fractal.
 It demonstrates the use of compute shaders and buffer objects in Nymphaea.
 
 <img src="https://github.com/FiveN1/nymphaea/blob/main/demos/Mandelbrot_set_demo/res/img/screenshots.png" alt="Mandelbrot set demo image" width="512"/>
