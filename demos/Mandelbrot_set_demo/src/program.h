@@ -13,6 +13,8 @@
 #include"ui/ui.h"
 #include"color_scheme/color_scheme.h"
 
+#include"nymphaea_lib/graphics/text/text_mesh/text_mesh.h"
+
 // nějakej scene systém?
 // - 2D scene system.
 // 

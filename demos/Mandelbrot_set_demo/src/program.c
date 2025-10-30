@@ -25,7 +25,7 @@ void program_create(program_data* program) {
     // GUI
     //
     mbs_ui_create(&program->ui);
-
+    
     //
     // Fractal
     //

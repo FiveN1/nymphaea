@@ -8,6 +8,7 @@ typedef struct mbs_ui {
     np_gui_text* program_stats;
     np_gui_text* camera_stats;
     np_gui_text* fractal_stats;
+
 } mbs_ui;
 
 void mbs_ui_create(mbs_ui* ui);

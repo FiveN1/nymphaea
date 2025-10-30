@@ -41,8 +41,8 @@ np_mesh_data np_mesh_shape_rectangle(float width, float height, enum np_mesh_sha
     //
 
     // vertices alloc
-    mesh_data.verticies_size = vertex_count * vertex_size * (GLuint)sizeof(GLfloat);
-    mesh_data.vertices = (GLfloat*)malloc(mesh_data.verticies_size);
+    mesh_data.vertices_size = vertex_count * vertex_size * (GLuint)sizeof(GLfloat);
+    mesh_data.vertices = (GLfloat*)malloc(mesh_data.vertices_size);
 
     // set data
     for (int vertex = 0; vertex < vertex_count; vertex++) {

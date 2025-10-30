@@ -98,19 +98,39 @@ void* np_mesh_get_draw_data(np_mesh* mesh);
 
 // NOT part* of mesh
 // default mesh draw callback.
+// #### Parameters
 // - np_mesh* mesh                    -> mesh instance.
 // - np_shader_program shader_program -> shader program used for shading in the mesh.
 // - void* shader_data                -> shader data used by the shader program.
 void np_mesh_default_draw_callback(np_mesh* mesh, np_shader_program shader_program, void* shader_data);
 
+// set new mesh data
+// NOTE: new attributes will not be updated !
+// #### Parameters
+// - np_mesh* mesh          -> mesh instance.
+// - np_mesh_data mesh_data -> pointers to vertices, indices and attributes packaged together in 'np_mesh_data' struct that will be used to copy its data to the GPU.
+// - GLenum vertex_usage    -> tells OpenGL how often the vertex data will change. can be: GL_STATIC_DRAW, GL_DYNAMIC_DRAW or GL_STREAM_DRAW.
+// - GLenum element_usage   -> tells OpenGL how often the element data will change. can be: GL_STATIC_DRAW, GL_DYNAMIC_DRAW or GL_STREAM_DRAW.               -> mesh instance.
+void np_mesh_set_mesh_data(np_mesh* mesh, np_mesh_data mesh_data, GLenum vertex_usage, GLenum element_usage);
+
 /*
 * Změny
+*
 * [...]
-* [07.06.2025] draw data se ted doopravdy smažou při delete()
-* [26.06.2025] funkce np_mesh_set_shader přenmenována na np_mesh_set_shader_program, protože jsem sem přidal np_shader.
+* hodně změn
+*
+* [07.06.2025] 
+* draw data se ted doopravdy smažou při delete()
+*
+* [26.06.2025] 
+* funkce np_mesh_set_shader přenmenována na np_mesh_set_shader_program, protože jsem sem přidal np_shader.
 *
 * [28.10.2025] 
 * odebrána funkce np_mesh_create_procedural()
+*
+* [30.10.2025] (29.10.2025 ale po půlnoci :D)
+* přidána funkce 'np_mesh_set_mesh_data()', kvůli čistějšímu generování textu v 'np_text_mesh'
+*
 */
 
 #endif NP_MESH_H

@@ -10,7 +10,7 @@ void np_mesh_create_advanced(np_mesh* mesh, np_mesh_data mesh_data, GLenum verte
     np_vao_create(&mesh->vao);
     np_vao_bind(mesh->vao);
     // set verticies array (vbo)
-    np_vbo_create(&mesh->vbo, mesh_data.vertices, mesh_data.verticies_size, vertex_usage);
+    np_vbo_create(&mesh->vbo, mesh_data.vertices, mesh_data.vertices_size, vertex_usage);
     np_vbo_bind(mesh->vbo);
     // set indicies array (ebo)
     np_ebo_create(&mesh->ebo, mesh_data.indices, mesh_data.indices_size, element_usage);
@@ -94,4 +94,12 @@ void np_mesh_default_draw_callback(np_mesh* mesh, np_shader_program shader_progr
     np_shader_program_use(shader_program);
     // draw mesh
     np_mesh_draw(mesh);
+}
+
+void np_mesh_set_mesh_data(np_mesh* mesh, np_mesh_data mesh_data, GLenum vertex_usage, GLenum element_usage) {
+    // create new buffers
+    np_vbo_create_buffer(mesh->vbo, mesh_data.vertices, mesh_data.vertices_size, vertex_usage);
+    np_ebo_create_buffer(mesh->ebo, mesh_data.indices, mesh_data.indices_size, element_usage);
+    // set new element size
+    mesh->element_size = mesh_data.indices_size / sizeof(GLuint);
 }

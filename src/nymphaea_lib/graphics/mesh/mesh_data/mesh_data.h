@@ -10,7 +10,7 @@
 typedef struct np_mesh_data {
     // verticies
     GLfloat* vertices;
-    GLuint verticies_size;
+    GLuint vertices_size;
     // indicies
     GLuint* indices;
     GLuint indices_size;

@@ -135,7 +135,7 @@ void np_gui_on_event(np_gui_context* gui_context, np_event event, np_window* win
     // check zda enabled!!!
     np_mia_registry* texts = np_gui_get_elements(gui_context, NP_GUI_TEXT);
     for (size_t i = 0; i < np_mia_registry_get_size(texts); i++) {
-        np_gui_text_on_event((np_gui_text*)np_mia_get_by_id(texts, i), gui_context, event, window);
+        //np_gui_text_on_event((np_gui_text*)np_mia_get_by_id(texts, i), gui_context, event, window);
     }
 
 }

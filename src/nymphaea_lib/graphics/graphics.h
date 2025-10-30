@@ -42,10 +42,6 @@
 #include"text/text.h"
 #include"framebuffer/framebuffer.h"
 
-#include"text/text_2d/text_2d.h"
-
-#include"text/text_highlight/text_highlight.h"
-
 // debug
 #include"debug/delta_time.h"
 

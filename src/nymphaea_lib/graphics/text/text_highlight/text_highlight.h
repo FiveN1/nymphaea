@@ -2,14 +2,15 @@
 #define NP_TEXT_HIGHLIGHT_H
 
 #include"nymphaea_lib/graphics/mesh/mesh.h"
-#include"nymphaea_lib/graphics/transform/transform_2d/transform_2d.h"
-// bude zatím jenom fungovat na text_2d
-#include"nymphaea_lib/graphics/text/text_2d/text_2d.h"
+#include"nymphaea_lib/graphics/text/text.h"
 
+#include"nymphaea_lib/graphics/transform/transform_2d/transform_2d.h"
 
 #include"nymphaea_lib/graphics/window/event/event.h"
 
 #include"nymphaea_lib/core/data_structures/array/array.h"
+
+// NOT IMPLEMENTED
 
 /*
 * ## Text Highlight

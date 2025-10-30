@@ -5,6 +5,8 @@
 #include"nymphaea_lib/graphics/font/font.h"
 #include"nymphaea_lib/core/data_structures/array/array.h"
 
+#include"text_mesh/text_mesh.h"
+
 // text.h by FiveN
 
 /*
@@ -20,16 +22,8 @@ typedef struct np_text {
     size_t string_length;
     // font ptr
     np_font* font;
-    // mesh of the text
-    np_mesh* mesh;
-    // to achive fast update speeds, mesh data needs to change as little as possible. (avoiding malloc / realloc)
-    np_array verticies;
-    np_array indices;
-    // other 
-    GLfloat width;
-    GLfloat height;
-
-    size_t lines;
+    //
+    np_text_mesh text_mesh;
 
     // přidat text highlight
     // outline?
@@ -54,14 +48,6 @@ void np_text_delete(np_text* text);
 // - np_text* text      -> text instance.
 // - char* text_content -> string of text to be displayed by text instance.
 void np_text_set(np_text* text, char* string);
-// get text width.
-// #### Parameters
-// - np_text* text -> text instance.
-GLfloat np_text_get_width(np_text* text);
-// get text height.
-// #### Parameters
-// - np_text* text -> text instance.
-GLfloat np_text_get_height(np_text* text);
 // get mesh of text.
 // #### Parameters
 // - np_text* text -> text instance.
@@ -75,16 +61,6 @@ void np_text_set_font(np_text* text, np_font* font);
 char* np_text_get_string(np_text* text);
 
 
-
-size_t np_text_get_index_by_position(np_text* text, float x, float y); // !!! pomalé
-
-size_t np_text_get_index_by_position_round(np_text* text, float x, float y); // !!! pomalé
-
-size_t np_text_get_position_by_index(np_text* text, size_t index, float* x, float* y); // !!! pomalé
-
-
-size_t np_text_get_index_by_position_clamp(np_text* text, float x, float y);
-
 // TODO:
 // přidat funkce které upraví jenom usek textu
 // přidat také funkci která upraví usek textu na jiný font? nebo iný mesh??
@@ -94,11 +70,21 @@ size_t np_text_get_index_by_position_clamp(np_text* text, float x, float y);
 /*
 * Změny:
 *
-* [...] hodně změn
-* [31.05.2025] uprava komentářů
-* [13.06.2025] při tvorbě textu je content textu allocován kdyby originální kontent byl deallocován. bezpečné.
-* - začištění kodu
+* [...] 
+* hodně změn
 *
+* [31.05.2025] 
+* uprava komentářů
+*
+* [13.06.2025] 
+* při tvorbě textu je content textu allocován kdyby originální kontent byl deallocován. bezpečné.
+* začištění kodu
+*
+* [29.10.2025]
+* logika pro generování meshe přesunuta do text_mesh.c
+*
+* [30.10.2025]
+* začištěno.
 *
 */
 
