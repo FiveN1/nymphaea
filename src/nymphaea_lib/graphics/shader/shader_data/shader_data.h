@@ -7,7 +7,7 @@
 #include<nymphaea_lib/core/data_structures/dynamic_array/dynamic_array.h>
 #include<nymphaea_lib/graphics/mesh/mesh.h>
 
-#define NP_SHADER_DATA_DEBUG
+// #define NP_SHADER_DATA_DEBUG
 
 // ## Shader data
 // data která využívá shader.
@@ -94,7 +94,9 @@ void np_shader_data_draw_callback(np_mesh* mesh, np_shader_program shader_progra
 * [25.06.2025] funkční, rozděleno do funkcí pro snadnou čitelnost a přidáváná podpory dalších uniforem v budoucnu.
 * [26.06.2025] přidány poznámky.
 * [27.06.2025] přidány debug funkce. STABILNÍ
-* [25.10.2025] problém: není možné bindovat DSA textury.
+*
+* [25.10.2025] 
+* problém: není možné bindovat DSA textury. (29.10.2025) problém vyřešen, teď v shader input musíš určit uniformu sám.
 *
 */
 

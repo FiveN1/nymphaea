@@ -10,7 +10,6 @@ void mbs_ui_create(mbs_ui* ui) {
     np_tr2_set_scale(np_gui_text_get_transform(text1), (vec2){1.5f, 1.5f});
 
     ui->program_stats = np_gui_text_create(&ui->gui_context, "ms: 0.0 fps: 0");
-    np_print("gg at: %p", np_gui_text_get_transform(ui->program_stats));
     np_tr2_set_position(np_gui_text_get_transform(ui->program_stats), (vec2){-1.0f, 0.93f});
 
     ui->camera_stats = np_gui_text_create(&ui->gui_context, "position xy: (0.0, 0.0) zoom: 0.0");

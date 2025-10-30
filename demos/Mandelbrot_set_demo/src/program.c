@@ -30,7 +30,7 @@ void program_create(program_data* program) {
 
     // viewport
     fractal_viewport_create(&program->viewport, program->mesh_registry, &program->texture_shader, np_window_get_width(&program->window), np_window_get_height(&program->window));
-
+    
 }
 
 // iterate on program data

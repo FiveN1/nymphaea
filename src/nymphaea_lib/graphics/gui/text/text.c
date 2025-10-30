@@ -18,8 +18,6 @@ np_gui_text* np_gui_text_create(np_gui_context* gui_context, char* text_string) 
     *(mat3**)np_shader_data_get(shader_data, "view_matrix") = np_tr2_get(&gui_context->camera.transform);
     *(mat4**)np_shader_data_get(shader_data, "proj_matrix") = np_camera_2d_get_matrix(&gui_context->camera);
 
-    np_print("at: %p, matat: %p", &gui_text->transform, np_tr2_get(&gui_text->transform));
-
     // return allocated address
     return gui_text;
 }
@@ -35,7 +33,6 @@ np_text* np_gui_text_get_text(np_gui_text* gui_text) {
 np_tr2* np_gui_text_get_transform(np_gui_text* gui_text) {
     return &gui_text->transform;
 }
-
 
 void np_gui_text_set_font(np_gui_text* gui_text, np_font* font) {
     np_text_set_font(&gui_text->text, font);
